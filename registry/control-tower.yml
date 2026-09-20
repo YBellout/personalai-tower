@@ -48,7 +48,7 @@ control_room:
   chat: "https://claude.ai/code/session_011gf314me9VbMwtXMr9vTjp"   # Cowork session in the claude.ai project "AI Control Tower"
   opened: 2026-09-20
   refresh_after_days: 30
-  last_folded: ""
+  last_folded: "2026-09-20"   # this session's work folded into docs/HANDOVER.md and committed
 
 self_governance:
   rule: "bound by every rule it enforces on the projects it governs"
