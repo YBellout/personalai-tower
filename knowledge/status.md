@@ -42,8 +42,15 @@ rules do not change.
 ## Fixed layout of the rendering, top to bottom
 
 1. **Headline**: one light and one sentence. 🟢 on track, 🟡 waiting or at risk, 🔴 broken or blocked.
-2. **Your actions**: numbered, at most 3, imperative, each with where to click and how
-   long it takes. If there is none, write "Nothing needed from you".
+2. **Your actions**: a table, at most 4 rows: number, action with minutes, who can do it,
+   button. Before listing any action, check whether Claude can do it for him, and tag it:
+   🤖 Claude alone, 🤝 shared (say which part stays his), 👤 only him (say why, one clause).
+   Anything Claude can do alone without his OK is not an action of his, Claude just does it.
+   Never automate a step that creates, shows or pastes a secret, that stays 👤.
+   Button column: a prefilled link when a URL exists, the control words `do N` when Claude
+   can run it, and the launcher file name when it is a double-click. `do N` is a short
+   control answer under D-007, no intake. If there is none, write "Nothing needed from you".
+   The HTML UI (M1) turns this column into real buttons: `link`, `do`, `launcher`.
 3. **Claude next**: at most 3 lines, what runs without him.
 4. **Milestone**: release, progress n of m stories, exit test counter (days passed of 3).
 5. **Stories**: one table, one row per open story, state as ✅ done, 🔵 in progress,
@@ -65,7 +72,7 @@ rules do not change.
 ## status.json shape
 
     generated_at, generated_by, light (green|amber|red), headline,
-    your_actions[]  {n, do, where, minutes}
+    your_actions[]  {n, do, minutes, automation (claude|shared|user), why, button {kind (link|do|launcher), target}}
     claude_next[]   string
     milestone       {release, name, stories_done, stories_total, exit_test, exit_days_passed, exit_days_needed}
     stories[]       {id, title, state (done|in_progress|waiting_user|blocked|not_started), note}

@@ -1,38 +1,137 @@
 {
-  "generated_at": "2026-09-20T13:40:00-04:00",
+  "generated_at": "2026-09-20T13:55:00-04:00",
   "generated_by": "control room",
   "light": "amber",
-  "headline": "M0 install nearly done. Heartbeat installed and ran on the Mac. Waiting on you for the GitHub connection.",
+  "headline": "M0 install nearly done. Heartbeat ran once by hand, its automatic wake is not proven yet. GitHub connection waits on you.",
   "your_actions": [
-    {"n": 1, "do": "Create the empty private repo personalai-tower", "where": "github.com/new", "minutes": 1},
-    {"n": 2, "do": "Create a token for that repo only, Contents read and write", "where": "github.com/settings/personal-access-tokens/new", "minutes": 3},
-    {"n": 3, "do": "Double-click connect-github.command and paste the token", "where": "AI Control Tower/launchers", "minutes": 1}
+    {
+      "n": 1,
+      "do": "Run the heartbeat diagnostic",
+      "minutes": 0.2,
+      "automation": "claude",
+      "why": "needs your OK for screen control",
+      "button": {
+        "kind": "do",
+        "target": "do 1",
+        "launcher": "AI Control Tower/launchers/check-heartbeat.command"
+      }
+    },
+    {
+      "n": 2,
+      "do": "Create the empty private repo personalai-tower",
+      "minutes": 1,
+      "automation": "shared",
+      "why": "you must be signed in to GitHub in the Claude browser pane",
+      "button": {
+        "kind": "link",
+        "target": "https://github.com/new?name=personalai-tower&visibility=private"
+      }
+    },
+    {
+      "n": 3,
+      "do": "Create the push token, that repo only, Contents read and write",
+      "minutes": 3,
+      "automation": "user",
+      "why": "a secret never passes through the chat",
+      "button": {
+        "kind": "link",
+        "target": "https://github.com/settings/personal-access-tokens/new?name=personalai-tower-push&contents=write&expires_in=365"
+      }
+    },
+    {
+      "n": 4,
+      "do": "Connect and first push, paste the token",
+      "minutes": 1,
+      "automation": "shared",
+      "why": "Claude opens the launcher, you paste the token",
+      "button": {
+        "kind": "launcher",
+        "target": "AI Control Tower/launchers/connect-github.command"
+      }
+    }
   ],
   "claude_next": [
-    "Confirm launchd woke the heartbeat by itself (next 30 minute wake)",
-    "After your push: verify remote, privacy and first automatic push, then start the 3 day test",
-    "Patch heartbeat so a no-remote run stops committing every 30 minutes"
+    "Read the diagnostic and fix the automatic wake",
+    "After your push: verify remote, privacy, first automatic push, then start the 3 day test"
   ],
-  "milestone": {"release": "v0.1.0", "name": "M0", "stories_done": 8, "stories_total": 11,
-                "exit_test": "3 consecutive days with the Mac on, each with a commit and a push",
-                "exit_days_passed": 0, "exit_days_needed": 3},
+  "milestone": {
+    "release": "v0.1.0",
+    "name": "M0",
+    "stories_done": 8,
+    "stories_total": 11,
+    "exit_test": "3 consecutive days with the Mac on, each with a commit and a push",
+    "exit_days_passed": 0,
+    "exit_days_needed": 3
+  },
   "stories": [
-    {"id": "S-002", "title": "git and private GitHub remote", "state": "waiting_user", "note": "local repo done, push needs your 3 actions"},
-    {"id": "S-003", "title": "Heartbeat", "state": "in_progress", "note": "built, installed, first Mac run OK, launchd wake and push to confirm"},
-    {"id": "S-004", "title": "Three days unattended", "state": "blocked", "note": "starts after the first successful push"}
+    {
+      "id": "S-002",
+      "title": "git and private GitHub remote",
+      "state": "waiting_user",
+      "note": "local repo done, push needs your 3 actions"
+    },
+    {
+      "id": "S-003",
+      "title": "Heartbeat",
+      "state": "in_progress",
+      "note": "built, installed, first Mac run OK, launchd wake and push to confirm"
+    },
+    {
+      "id": "S-004",
+      "title": "Three days unattended",
+      "state": "blocked",
+      "note": "starts after the first successful push"
+    }
   ],
   "projects": [
-    {"id": "control-tower", "name": "AI Control Tower", "status": "importing", "next": "finish M0"},
-    {"id": "ai-architecture-tower", "name": "AI Architecture Tower", "status": "unmanaged", "next": "adopt first, after M0"},
-    {"id": "family-school-dashboard", "name": "Family School Dashboard", "status": "unmanaged", "next": "locate files, after M0"},
-    {"id": "virtual-closet", "name": "Virtual Closet", "status": "unmanaged", "next": "last in order"},
-    {"id": "home-assistant", "name": "Home Assistant", "status": "unmanaged", "next": "not in the order yet"}
+    {
+      "id": "control-tower",
+      "name": "AI Control Tower",
+      "status": "importing",
+      "next": "finish M0"
+    },
+    {
+      "id": "ai-architecture-tower",
+      "name": "AI Architecture Tower",
+      "status": "unmanaged",
+      "next": "adopt first, after M0"
+    },
+    {
+      "id": "family-school-dashboard",
+      "name": "Family School Dashboard",
+      "status": "unmanaged",
+      "next": "locate files, after M0"
+    },
+    {
+      "id": "virtual-closet",
+      "name": "Virtual Closet",
+      "status": "unmanaged",
+      "next": "last in order"
+    },
+    {
+      "id": "home-assistant",
+      "name": "Home Assistant",
+      "status": "unmanaged",
+      "next": "not in the order yet"
+    }
   ],
   "watch": [
+    "Automatic wake of the heartbeat not proven (no run at 13:35)",
     "Hub has no offsite copy until the first push",
-    "Heartbeat commits every 30 minutes until a push succeeds",
     "No local mirror yet (D-003)"
   ],
-  "heartbeat": {"installed": true, "last_run": "2026-09-20 13:05:15", "last_result": "PUSH SKIPPED: no remote configured yet", "last_success_day": null},
-  "sources": ["bus/handover", "evolution/control-tower.md", "registry", "config.yml", "git", "bus/events.log"]
+  "heartbeat": {
+    "installed": true,
+    "last_run": "2026-09-20 13:05:15",
+    "last_result": "PUSH SKIPPED: no remote configured yet",
+    "last_success_day": null
+  },
+  "sources": [
+    "bus/handover",
+    "evolution/control-tower.md",
+    "registry",
+    "config.yml",
+    "git",
+    "bus/events.log"
+  ]
 }
