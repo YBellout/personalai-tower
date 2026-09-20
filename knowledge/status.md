@@ -60,6 +60,10 @@ rules do not change.
 8. Footer: generated at, sources read.
 
 ## Rules of writing
+- Every hub path shown to Yassir is clickable and opens the containing folder. In the
+  side doc: a `file:///` link to the folder, spaces as %20. In chat: a `computer://`
+  link. In the M1 UI: a button that reveals the file in Finder. If a surface blocks
+  the link, keep the path readable next to it.
 
 - Fits one screen of the side panel. If it grows, cut, do not scroll.
 - Yassir's actions always come first, above everything except the headline.
