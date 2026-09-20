@@ -9,12 +9,13 @@
 - [x] S-001 Set the root and confirm it with Yassir  (O1)  2026-09-20
       Confirmed by Yassir, recorded in config.yml as root_confirmed_by/on
 - [ ] S-002 git init _tower, first commit, private GitHub remote  (O1) (est S)
-      blocked by D-002. Shape decided 2026-09-20, an existing personal account.
-      The handle itself is still missing, so init and commit can run, push cannot
+      2026-09-20: init, .gitignore and first commit 497b217 done, C1 to C4, C7, C8 met.
+      C5 and C6 blocked by D-002: Yassir has no GitHub account set up on this Mac yet,
+      he has to create one or look his up
 - [ ] S-003 Heartbeat scheduled task: wake, read, append an event, commit, push,
       write a handover  (O2) (est M)
-      X-001 granted 2026-09-20. Now blocked only by its own design file, which the
-      Tower owes itself before a line of code
+      X-001 granted 2026-09-20. S-003a design file written 2026-09-20, awaiting
+      Yassir's acceptance: "AI Control Tower/docs/S-003-heartbeat-design.md"
 - [ ] S-004 Run it three nights unattended, nobody touching the Mac  (O2) (est S)
 - [x] S-005 Per-project link prompt, docs/PROJECT_LINK_PROMPT.md  (O3)  2026-09-20
 - [x] S-006 Self-governance clause and derogation register  (O3)  2026-09-20
