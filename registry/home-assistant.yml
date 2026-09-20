@@ -1,0 +1,27 @@
+id: home-assistant
+name: Home Assistant
+one_liner: Smart home automation setup, sensors and device integration
+status: unmanaged
+owner_chat: ""
+
+# DOCS-ONLY candidate. The design doc calls this "config rather than an app", and
+# open decision T-2 recommends adopting it docs-only. Not confirmed by Yassir.
+
+paths:
+  root: ""
+  docs: ""
+
+observed:
+  present_under_root: false
+  scanned_on: 2026-09-20
+
+findings:
+  - id: HA-F1
+    severity: low
+    finding: "Configuration, not an application. Adopting it as code would be governance for its own sake."
+    rule: "the Tower must not become a project that eats the projects it governs"
+    fix_at: "docs-only adoption, or no adoption at all"
+
+blocking:
+  - "T-2 unanswered: docs-only, or not governed at all."
+  - "M0 has not passed."

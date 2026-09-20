@@ -1,0 +1,55 @@
+id: virtual-closet
+name: Virtual Closet
+one_liner: Locally served garment closet and supplier store, with image analysis and originals discovery
+status: unmanaged          # active | paused | archived | importing | unmanaged
+owner_chat: ""
+
+# UNMANAGED. Nothing below is enforced yet. Written from a read-only scan of the
+# hub on 2026-09-20, not from an adoption. No file of this project has been read,
+# moved, copied or changed.
+
+paths:
+  root: PersonalShopper    # PROVISIONAL, see open_questions
+  dev: ""
+  prod: ""
+  data: ""
+  resources: ""
+
+observed:                  # verified by scan, 2026-09-20
+  size: 4.0 GB
+  files: 40060
+  git: none                # no .git anywhere under the root
+  subfolders: ["Virtual Closet", "AI Personal Shopper", "Selected Items", "Claude outputs"]
+  launchers: "numbered .command files, 1 to 20, matches knowledge/operator.md"
+  versioning_habit: "manual .bak-<timestamp> copies alongside live files"
+
+findings:                  # things adoption must fix, not things to fix now
+  - id: VC-F1
+    severity: high
+    finding: "Secrets on disk. A .env file and several .env.bak-* copies sit beside the code."
+    rule: "no secret in a file, macOS Keychain personalai.* only"
+    fix_at: "adoption step, secrets lifted to Keychain, .env git-ignored and removed to _to_delete/"
+  - id: VC-F2
+    severity: high
+    finding: "No version control at all across 40,060 files and 4.0 GB."
+    rule: "one git repo per project, private remote"
+    fix_at: "adoption steps 6 and 7. The .bak- habit is what git replaces."
+  - id: VC-F3
+    severity: medium
+    finding: "Code, catalogue photos and outputs share one tree, so a git repo here would swallow 4 GB of binaries."
+    rule: "no large binaries in git, resources/ is git-ignored"
+    fix_at: "adoption step 5, split code from resources before git init"
+  - id: VC-F4
+    severity: medium
+    finding: "Supplier crawling has no enforced pace limit in code."
+    rule: "carried from the permission decision, about not being blocked rather than security"
+    fix_at: "first story after adoption, pyai.net paced client"
+
+open_questions:
+  - "Is the governed project PersonalShopper, or PersonalShopper/Virtual Closet with the rest as resources and archives? This decides the repo boundary and must be answered before adoption step 5."
+  - "Is 'AI Personal Shopper' a second project, or this project's design documents?"
+
+blocking:
+  - "M0 has not passed. Nothing is adopted until it does."
+  - "D-012 answered 2026-09-20: this project is last, deliberately."
+  - "D-003 local mirror destination. 4.0 GB and 40,060 files is the reason it exists."

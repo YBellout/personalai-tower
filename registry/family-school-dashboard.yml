@@ -1,0 +1,36 @@
+id: family-school-dashboard
+name: Family School Dashboard
+one_liner: Private locally hosted dashboard consolidating school information for the three children
+status: unmanaged
+owner_chat: ""
+
+# UNMANAGED, and NOT PRESENT under the hub root as of the scan on 2026-09-20.
+# Residency finding: if this project exists on disk it lives outside the root, so
+# it is by definition not governed. Its location must be supplied before anything
+# can be planned against it.
+
+paths:
+  root: ""                 # UNKNOWN, ask Yassir
+  dev: ""
+  prod: ""
+
+observed:
+  present_under_root: false
+  scanned_on: 2026-09-20
+
+findings:
+  - id: FS-F1
+    severity: high
+    finding: "Not under the hub root. Location unknown to the Tower."
+    rule: "governed means every file under the root, on local disk"
+    fix_at: "adoption step 5, after the sweep and the frozen copy"
+  - id: FS-F2
+    severity: high
+    finding: "Handles children's school data. The highest sensitivity of any candidate project."
+    rule: "policy file, Keychain secrets, and no cloud-synced folder"
+    fix_at: "policy written at adoption, before any code moves"
+
+blocking:
+  - "Location unknown. The stray scan in config.yml names ~/Desktop, ~/Documents, ~/Downloads and ~/Developer, and the Tower has a folder grant to none of them."
+  - "M0 has not passed."
+  - "D-012 answered 2026-09-20: this project is third, the first real adoption."

@@ -1,0 +1,42 @@
+id: ai-architecture-tower
+name: AI Architecture Tower
+one_liner: Defines the shared technical platform every other app is built and deployed on
+status: unmanaged
+owner_chat: "AI Architecture Tower"
+
+# DOCS-ONLY by design. This project has no code and is not expected to grow any.
+# The Tower's duty toward it is the fivefold duty in architecture/README.md:
+# retain rather than reinvent, keep a status line and refresh it by re-reading,
+# enforce it on every governed app, propagate changes when open decisions resolve,
+# and do not freeze today's specifics.
+
+paths:
+  root: ""                 # docs-only, no folder under the hub yet
+  docs: ""
+
+source_of_truth:
+  living_doc: https://claude.ai/code/artifact/336e1b53-42d4-4e95-b03b-2e96c6e03c4b
+  control_tower_prompt_tab: "second tab, defines the five duties"
+  note: "The doc's title predates the pivot to local hosting. Trust the content over the title."
+
+status_line:               # refreshed by re-reading the doc, never from memory
+  last_read: 2026-09-20
+  last_seen_rev: 12
+  phase_reached: "design, nothing built"
+  blocking_open_decisions:
+    - "Mac mini not ordered, so every hosting decision is unexercised"
+    - "domain name"
+    - "Jellyfin vs Plex"
+    - "backup strategy"
+
+findings:
+  - id: AT-F1
+    severity: low
+    finding: "No folder under the hub, so its docs are not mirrored, backed up or versioned with everything else."
+    rule: "governed means every file under the root"
+    fix_at: "adoption, one docs/ folder and one repo. Cheapest adoption of any candidate."
+
+blocking:
+  - "M0 has not passed."
+  - "D-012 answered 2026-09-20: this project is second, the cheap rehearsal after the Tower itself."
+  - "D-013 open: M1's exit test assumes a project with code and this one is docs-only."

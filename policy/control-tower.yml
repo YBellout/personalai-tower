@@ -1,0 +1,23 @@
+# Posture is allow-audit: nothing is blocked, the nightly audit reports what was
+# actually reached, and the lists below are built from real data rather than guessed.
+dev:
+  filesystem:
+    write: ["AI Control Tower/dev", "AI Control Tower/docs", "_tower", "_shared"]
+    read:  ["."]
+    deny:  ["AI Control Tower/prod"]
+  network:
+    observed: []          # filled by the audit, then promoted to an allowlist
+  secrets:
+    keychain: []          # personalai.* names only, never on disk
+prod:
+  filesystem:
+    write: ["_tower"]
+    read:  ["AI Control Tower/prod", "."]
+  network:
+    observed: []
+  secrets:
+    keychain: []
+
+external_refs:
+  - path: "macOS Keychain: personalai.*"
+    reason: "secrets must not be on disk"

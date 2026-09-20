@@ -1,0 +1,41 @@
+# Derogations: recorded, time-boxed exceptions to the rules the Tower enforces.
+# The full list of everything currently not conformant, in one place.
+#
+# Rules, see policy/self-governance.md:
+#   - Only Yassir grants. Claude proposes, Claude never grants, extends or renews.
+#   - expires_on or trigger is mandatory. Neither means invalid, and the audit
+#     reports it as a breach rather than an exception.
+#   - state: proposed | granted | expired | revoked | closed
+#   - An expired derogation is a red state, not a grace period.
+
+derogations:
+
+  - id: X-001
+    scope: control-tower
+    rule: "Never run code from dev/. What runs is what promote wrote into prod/."
+    reason: >
+      The M0 heartbeat is the Tower's first code, and it has to run nightly to
+      prove the Tower can work unattended. promote.sh is M1 work, so there is no
+      way to promote the very thing that proves promotion is worth building.
+    proposed_by: claude
+    proposed_on: 2026-09-20
+    granted_by: Yassir
+    granted_on: 2026-09-20
+    expires_on: ""
+    trigger: "M1 delivers bin/promote.sh. The heartbeat is then promoted and this closes."
+    state: granted
+    compensating_control: >
+      The heartbeat is the only file covered, named explicitly, and it writes a
+      handover entry on every run, so a silent failure is visible the next morning
+      rather than three weeks later.
+    breaks_if_denied: >
+      M0 cannot run. The alternative is building promote.sh first, which makes M0
+      a multi-day milestone instead of a half-day one and proves the risky thing
+      last instead of first.
+
+# Not derogations, recorded here so they are not mistaken for breaches:
+#   - The Tower has no frozen adoption copy (step zero of the adopt pipeline).
+#     Not applicable: it was created empty on 2026-09-20, there is nothing to
+#     freeze and no original to preserve.
+#   - _tower has no baseline test suite. Not yet applicable: M0's acceptance
+#     evidence is the three unattended nights. A suite arrives with M1.

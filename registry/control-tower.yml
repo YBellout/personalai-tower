@@ -1,0 +1,66 @@
+id: control-tower
+name: AI Control Tower
+one_liner: Governs every other AI project; holds shared knowledge, status and oversight
+status: importing          # active | paused | archived | importing | unmanaged
+owner_chat: "AI Control Tower"
+
+paths:
+  root: AI Control Tower
+  dev: dev
+  prod: prod
+  data: _tower
+  resources: ""
+
+charter:
+  purpose: "One place that knows where everything is, what it may touch, and what state it was left in"
+  objectives:
+    - O1 Every project governed, residency clean, nothing outside the root
+    - O2 Two human steps per requirement: one pick and ten minutes
+    - O3 Decided once here, dispatched everywhere, never re-decided per project
+  non_goals:
+    - "redesigning the platform; that lives in the AI Architecture Tower project"
+    - "becoming a project that eats the projects it governs"
+  constraints:
+    - "non-technical operator: git is never typed, every long job is a numbered launcher"
+    - "no git repo or working copy inside a cloud-synced folder"
+    - "answer at decision depth first; depth only after a pick"
+
+version:
+  prod: none
+  dev: v0.1.0-dev
+
+health:
+  tests: ""
+  smoke: ""
+  integrity: ""
+
+uses_shared: {}
+
+autonomy:
+  bugs: L1
+  features: L2
+  data: L3
+  architecture: L4
+  nightly_window: "01:00-06:00"
+  budget_usd_month: 15
+
+control_room:
+  chat: "https://claude.ai/code/session_011gf314me9VbMwtXMr9vTjp"   # Cowork session in the claude.ai project "AI Control Tower"
+  opened: 2026-09-20
+  refresh_after_days: 30
+  last_folded: ""
+
+self_governance:
+  rule: "bound by every rule it enforces on the projects it governs"
+  policy: _tower/policy/self-governance.md
+  derogations: _tower/decisions/derogations.yml
+  escalates_to: Yassir        # the Tower has nothing above it
+  audit_order: first          # the nightly audit reports the Tower's own conformance first
+  open_derogations: [X-001]   # granted by Yassir 2026-09-20, open until M1 promotes the heartbeat
+
+links:
+  evolution: _tower/evolution/control-tower.md
+  policy: _tower/policy/control-tower.yml
+  link_prompt: _tower/docs/PROJECT_LINK_PROMPT.md
+  launch_plan: _tower/docs/LAUNCH_PLAN.md
+  design_doc: https://claude.ai/code/artifact/b73a4180-e88e-4b58-9702-9a5e2825829a

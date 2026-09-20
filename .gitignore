@@ -1,0 +1,14 @@
+.DS_Store
+*.env
+.env.bak-*
+*.pem
+*.key
+*.p12
+*_to_delete/
+*.bak-*
+# resources and large binaries never enter this repo
+resources/
+*.zip
+*.dmg
+*.mov
+*.mp4

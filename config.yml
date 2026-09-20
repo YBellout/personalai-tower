@@ -1,0 +1,43 @@
+# The Control Tower's own configuration. One file, one root.
+root: /Users/yassirbellout/Documents/PersonalAI
+created: 2026-09-20
+root_confirmed_by: Yassir       # S-001, 2026-09-20. Read and written this session.
+root_confirmed_on: 2026-09-20
+
+# The Tower's own code is a governed project like any other.
+tower_project: AI Control Tower
+tower_code_prod: AI Control Tower/prod
+tower_code_dev: AI Control Tower/dev
+
+mirror:
+  targets:
+    - name: local
+      path: ""            # TO SET: a second local destination, outside the root
+      enabled: false
+    - name: offsite
+      kind: object-store
+      enabled: false      # decided later, interface written so this is a flag
+  verify: sha256
+  warn_after_days: 7
+
+git:
+  remote_host: github.com
+  account: ""             # STILL TO SET: the handle itself. D-002 shape decided
+                          # 2026-09-20: an existing personal account of Yassir's,
+                          # private repos, credential in Keychain as personalai.github,
+                          # never in a file. S-002 cannot push until this is filled.
+  visibility: private
+
+residency:
+  rule: every governed project lives entirely under root, on local disk
+  never: [iCloud Drive, any cloud-synced folder]
+  scan_for_strays: ["~/Desktop", "~/Documents", "~/Downloads", "~/Developer"]
+
+permissions:
+  posture: allow-audit    # nightly audit reports, nothing blocked
+  ratchet_to: deny-default
+  ratchet_trigger: "the Mac mini goes live behind Cloudflare Access"
+
+platform:
+  mac_mini: not_ordered
+  transport_when_it_exists: github
