@@ -51,3 +51,14 @@ other on purpose. Also, that .venv must be git-ignored before "AI Control Tower"
 its own repo, or the repo swallows it.
 
 **Read first next time.** knowledge/status.md, then this file.
+
+**Added after the entry above was written, because it happened while committing it.**
+A stale `_tower/.git/index.lock` from 22:14 UTC was blocking every commit, with no git
+process running. It took a delete permission from Yassir to remove it. This is the
+finding the S-003a design already names, and it is worse than a Claude-VM
+inconvenience: **a stale lock blocks the heartbeat's own commit on macOS too**, and the
+heartbeat has no handling for it. It would report a failure every thirty minutes until
+someone removed the file by hand. heartbeat.sh should check for a lock older than a few
+minutes with no git process holding it, remove it, and say in its report that it did.
+That is a small story and it belongs before S-004 starts, because S-004 is three days
+of unattended runs and this is the thing most likely to break them silently.
