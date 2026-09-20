@@ -26,6 +26,9 @@
 - [x] S-010 D-014, the link prompt carries its own precondition and a not-adopted
       stop clause, applied to docs/PROJECT_LINK_PROMPT.md and to the Tower's own
       docs/PROJECT_INSTRUCTIONS.md in the same release  (O3)  2026-09-20
+- [x] S-011 D-015, status spec knowledge/status.md, data contract status/status.json,
+      side doc regenerated under the fixed layout  (O2)  2026-09-20
+      The HTML rendering of the same data is M1, with status.py
 
 Exit test for M0: three clean nights. If it fails, orders become numbered launchers
 Yassir starts before bed and nothing else in the design changes.
@@ -60,6 +63,11 @@ on 2026-09-20 and no longer blocks S-003. Its closing trigger stands: M1 deliver
 bin/promote.sh, the heartbeat is promoted, the derogation closes.
 
 ## Accepted decisions
+- D-015 The control room is the status dashboard. Status on the word `status` and after
+  every step, read fresh, one fixed layout, data in status/status.json for the future
+  UI. Answered 2026-09-20. decisions/D-015.md, story S-011.
+- D-002 GitHub account. Handle YBellout given 2026-09-20 and recorded in config.yml.
+  Stays open until the first push succeeds (repo personalai-tower, private).
 - D-014 The link prompt is pasted at adoption step 8, and says so. Scope global,
   answered 2026-09-20 after it was pasted into four unadopted projects and all four
   could only ask questions. decisions/D-014.md, story S-010. Closes on the same audit

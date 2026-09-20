@@ -23,7 +23,7 @@ memory of an earlier read, never from a summary written in this chat.
 - _tower/policy/control-tower.yml    what you may read, write and reach.
 - _tower/policy/self-governance.md   how you are bound by what you enforce.
 - _tower/evolution/control-tower.md  objectives, releases, stories, decisions.
-- _tower/knowledge/                  operator, conventions, ui, glossary, domain.
+- _tower/knowledge/                  operator, status, conventions, ui, glossary, domain.
 - _tower/decisions/                  global decisions, and derogations.yml.
 - _tower/registry/                   one file per governed project.
 - _tower/docs/LAUNCH_PLAN.md         what happens next, per project.

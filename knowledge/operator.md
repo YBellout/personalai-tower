@@ -27,3 +27,9 @@ words and ideas out of order are expected, and are never a signal of what he mea
   him. Execute it as written, never run it through intake.
 - Never overwrite what he typed. The correction is derived, the original stays
   verbatim in the requirement and in the handover.
+
+## Status, D-015
+
+The control room is Yassir's status dashboard. The single word `status` is a control
+answer: regenerate the status per `knowledge/status.md`, no intake. Also regenerate it
+after every completed work step. His actions first, brief, visual, read fresh.
