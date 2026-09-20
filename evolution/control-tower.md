@@ -30,6 +30,18 @@
       side doc regenerated under the fixed layout  (O2)  2026-09-20
       The HTML rendering of the same data is M1, with status.py
 
+## Pulled forward from M1
+- [ ] S-012 UI server basis, AI Control Tower/dev/ui (Flask app + templates, reads
+      status/status.json under the fixed layout from knowledge/status.md)  2026-09-20
+      Not an M0 story: v0.1.0-plan.md says "no UI is built" in this release, so this
+      is dev-only scaffolding, out of the story count above, doesn't touch the exit
+      test. Flagged to Yassir before starting, built now on his answer. Design file:
+      AI Control Tower/docs/S-012-ui-server-design.md, accepted same day via the
+      control room's interactive intake. Smoke-tested against the live status.json
+      (index and /api/status both render). Launcher: launchers/start-ui.command.
+      "AI Control Tower" has no git repo of its own yet (S-002 note: _tower first),
+      so this is not yet committed anywhere.
+
 Exit test for M0: three clean nights. If it fails, orders become numbered launchers
 Yassir starts before bed and nothing else in the design changes.
 
