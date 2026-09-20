@@ -45,8 +45,10 @@ autonomy:
   budget_usd_month: 15
 
 control_room:
-  chat: "https://claude.ai/code/session_011gf314me9VbMwtXMr9vTjp"   # Cowork session in the claude.ai project "AI Control Tower"
-  opened: 2026-09-20
+  chat: ""                  # RELEASED 2026-09-20. The next chat sets this as its first
+                            # write, per docs/OPEN_SESSION_PROMPT.md. If it is still empty,
+                            # no chat is holding the control room and nothing should write.
+  opened: ""
   refresh_after_days: 30
   last_folded: "2026-09-20"   # this session's work folded into docs/HANDOVER.md and committed
 

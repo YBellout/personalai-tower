@@ -56,14 +56,14 @@ THEN, in order, and nothing else:
    from there rather than from this prompt, which will go stale. Wait for my
    answers. Every one of them blocks M0 or M1.
 
-3. Then M0 only, in this order, stopping at the first item that is still
-   unanswered:
-     S-002  git init _tower, first commit, private GitHub remote.
-     S-003  the heartbeat design file, then bin/heartbeat.sh, then the nightly
-            scheduled task, created from inside this project so its runs land
-            here rather than somewhere else.
-     S-004  three nights unattended, with nobody touching the Mac.
-   If it fails, say so plainly. The fallback is that orders become numbered
+3. Then the work named in the newest handover entry, in the order it gives,
+   stopping at the first item that is still unanswered. Take it from there and
+   from _tower/evolution/control-tower.md, never from this prompt, which is
+   pointers on purpose so that it cannot go stale.
+   Record yourself in registry/control-tower.yml control_room before you change
+   anything else. If that field is not empty, another chat holds the hub: say so
+   and stop.
+   If M0 fails, say so plainly. The fallback is that orders become numbered
    launchers I start before bed, and nothing else in the design changes.
 
 HOW YOU WORK WITH ME is in _tower/docs/PROJECT_INSTRUCTIONS.md and

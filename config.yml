@@ -22,10 +22,12 @@ mirror:
 
 git:
   remote_host: github.com
-  account: "YBellout"       # D-002, given by Yassir 2026-09-20. Credential in Keychain via osxkeychain,
-                          # 2026-09-20: an existing personal account of Yassir's,
-                          # private repos, credential in Keychain as personalai.github,
-                          # never in a file. S-002 cannot push until this is filled.
+  account: "YBellout"     # D-002, given by Yassir 2026-09-20, verified on github.com.
+  tower_repo: personalai-tower
+  credential: osxkeychain # Set by S-003a. The heartbeat runs on macOS under launchd,
+                          # where the osxkeychain helper exists. A push from the Claude
+                          # Linux VM cannot work: that helper is absent there. Verified
+                          # 2026-09-20: git ls-remote from the VM fails on it.
   visibility: private
 
 residency:
