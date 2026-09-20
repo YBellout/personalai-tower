@@ -140,3 +140,72 @@ M0 can start until they are answered.
 
 From 2026-09-20 the control room chat is the single writer to this hub. The session
 that appended this section is closed and writes nothing further.
+
+---
+
+# Update, 2026-09-20, close of the S-012 session
+
+Appended at the close of the control room session that built the UI basis. Everything
+above still stands. This section says what changed since the last close, and what a
+new chat must not miss.
+
+## What this session did
+
+- Flagged, before starting, that v0.1.0-plan.md says "no UI is built" in M0. Yassir
+  answered via the interactive intake: build it now anyway, as dev scaffolding that
+  doesn't touch the M0 exit test. Design note:
+  `AI Control Tower/docs/S-012-ui-server-design.md`, accepted the same way.
+- Built S-012, the UI server basis: `AI Control Tower/dev/ui/` (Flask app, templates,
+  CSS), reads `_tower/status/status.json` under the fixed layout `knowledge/status.md`
+  defines. Launcher: `AI Control Tower/launchers/start-ui.command`.
+- Found, and fixed, a real bug: the first version opened the browser at a hardcoded
+  port regardless of whether the server actually bound it, so a port collision with
+  another of Yassir's local apps (the Family School Dashboard, on 8787) sent him to
+  that app's page instead. Fixed by having the app probe for a free port and open its
+  own browser tab only once it knows which one it actually bound. Verified against a
+  simulated collision, not just read over.
+- While regenerating status per D-015, found `status/status.json` was stale (from
+  before Yassir gave his GitHub handle). Refreshed it and the side doc
+  (https://claude.ai/code/artifact/20928a96-0eea-4492-a661-13d95e25b464) against
+  freshly read sources, not carried forward from memory.
+- `evolution/control-tower.md` gained a "Pulled forward from M1" section for S-012,
+  kept out of the v0.1.0 story count on purpose.
+- Three handover entries this session, newest first as always in `bus/handover/`:
+  S-012 port fix, S-012 UI server basis, D-015/S-011 status feature (that last one
+  predates this session but was the most recent before it).
+
+## True current state, verified this session, not carried forward
+
+- `git remote -v` in `_tower` shows `origin -> https://YBellout@github.com/YBellout/personalai-tower.git`,
+  set locally. No `origin/main` ref exists anywhere, `git fetch` fails from this VM
+  (`credential-osxkeychain` unreachable here, exactly as the M0 ground truth says). No
+  evidence anywhere of a successful push. S-002's three remaining actions (create the
+  repo, create the token, run `connect-github.command`) are unchanged and still open.
+- No heartbeat diagnostic has been run yet (`bus/reports/` is still empty except
+  `.keep`). Action 1 in "your actions" is still open too.
+- M0 is still 8 of 11 stories done, exit test at 0 of 3 days. Nothing in this session
+  changed that; S-012 is explicitly not one of the 11.
+- `AI Control Tower` still has no git repo of its own (only `_tower` does, per S-002's
+  own note: "M0 does the first"), so `dev/ui`, the new launcher and the design file
+  are not under version control anywhere yet.
+
+## New since the last close
+
+    "AI Control Tower/dev/ui/"                      app.py, templates, static, README
+    "AI Control Tower/launchers/start-ui.command"    starts the UI
+    "AI Control Tower/docs/S-012-ui-server-design.md"
+    bus/handover/*-s012-ui-server-basis.md
+    bus/handover/*-s012-port-fix.md
+    evolution/control-tower.md   "Pulled forward from M1" section
+
+## Still blocked, unchanged by this session
+
+D-002's push (handle is filled, the three GitHub actions are not done), D-003 mirror
+destination, D-004 ratchet trigger (not due), D-006 stray-scan grants, D-013 M1's exit
+test question. None of these are S-012's to resolve.
+
+## One writer
+
+This session is closed and writes nothing further. The next chat opens with
+`_tower/docs/OPEN_SESSION_PROMPT.md`, reads the newest handover by mtime (this
+section's own entry point, `bus/handover/`), and becomes the writer.
