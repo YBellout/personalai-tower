@@ -219,6 +219,9 @@ Three governance changes, no code, hold untouched. Detail in
 
 ## One writer
 
+The 21:45 session (D-016, platform scope, S-013) is closed and writes nothing further;
+archive under "AI Control Tower/archives/", closing entry
+`bus/handover/2026-09-20-2145-chat-closed-d016-session.md`.
 This session is closed and writes nothing further. The next chat opens with
 `_tower/docs/OPEN_SESSION_PROMPT.md`, reads the newest handover by mtime (this
 section's own entry point, `bus/handover/`), and becomes the writer.
