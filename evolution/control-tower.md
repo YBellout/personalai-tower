@@ -16,8 +16,9 @@
 - [ ] S-003 Heartbeat scheduled task: wake, read, append an event, commit, push,
       write a handover  (O2) (est M)
       X-001 granted. S-003a accepted 2026-09-20, launchd agent every 30 minutes.
-      S-003b built and installed. One Mac run, 13:05:15. NOT PROVEN TO WAKE BY ITSELF:
-      zero automatic runs since, checked 21:55. S-014 must land before S-004.
+      S-003b built and installed. launchd fires on schedule, 22 runs by 23:46, but
+      every automatic run is blocked by macOS privacy protection before the script
+      starts. Fixed by S-015 per D-017. S-014 and S-015 before S-004.
 - [ ] S-004 Run it three nights unattended, nobody touching the Mac  (O2) (est S)
 - [x] S-005 Per-project link prompt, docs/PROJECT_LINK_PROMPT.md  (O3)  2026-09-20
 - [x] S-006 Self-governance clause and derogation register  (O3)  2026-09-20
@@ -61,14 +62,13 @@ not before S-004 unless Yassir pulls one forward, as he did S-012.
       so in the report. Belongs before S-004 starts. (O2)  added 2026-09-20.
       Design file proposed 2026-09-20 21:55, awaiting Yassir:
       "AI Control Tower/docs/S-014-stale-lock-design.md".
-- [ ] S-015 bug      Heartbeat failures before the hub is readable leave no trace in the
-      hub. heartbeat.sh exits "HUB MISSING" at lines 12, 15 and 21 and logs only to
-      ~/Library/Logs, so an agent that fires and is denied ~/Documents looks, from the
-      control room, identical to one that never fires. Likeliest cause of today's
-      silence. Fix direction: a tiny wrapper app as the only thing granted Documents
-      access, rather than Full Disk Access for /bin/bash, which would grant it to every
-      bash script on the Mac. Confirm with check-heartbeat.command first. (O2)
-      added 2026-09-20.
+- [ ] S-015 bug      Unattended runs cannot enter ~/Documents. Diagnosed 2026-09-20 from
+      bus/reports/heartbeat-diagnostic-2026-09-20-234628.txt: launchd ran the heartbeat
+      22 times on schedule, every automatic run died before line 1, exit 126, macOS
+      privacy protection. Fix per D-017: one granted runner app as the single entry
+      point for every unattended job, plus a liveness file and a dead-man check in the
+      status. Design proposed 2026-09-20 23:55, awaiting Yassir:
+      "AI Control Tower/docs/S-015-runner-design.md". Blocks S-004. (O2)
 
 ## Operations (D-016)
 Runs the Tower owns. Unchanged code, evidence in bus/.
@@ -93,6 +93,9 @@ promotes it, which D-013 makes the same event as M1's exit test. X-002, the dev 
 past the M0 hold, closes when S-004 passes.
 
 ## Accepted decisions
+- D-017 Unattended jobs enter the hub through one granted runner app, the single entry
+  point for every Operations run. Full Disk Access for bash and moving the hub were
+  both rejected. Answered 2026-09-20. decisions/D-017.md, story S-015.
 - D-013 M1's exit test runs against the Tower itself. Promoting heartbeat.sh through
   promote.sh is also what closes X-001, so the two are one event. Platform Architecture
   runs alongside as the docs-only rehearsal. Answered 2026-09-20. decisions/D-013.md.

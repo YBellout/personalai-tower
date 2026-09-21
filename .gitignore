@@ -12,3 +12,7 @@ resources/
 *.dmg
 *.mov
 *.mp4
+
+# Liveness, overwritten every wake, never committed. D-017, S-015.
+bus/heartbeat/alive
+bus/heartbeat/last-error
