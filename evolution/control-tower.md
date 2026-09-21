@@ -52,12 +52,16 @@ Neither blocks S-004, so neither is in a release count. Dispatched to the Bugs c
 O-0003 on 2026-09-21. Both designs accepted by Yassir 2026-09-21; S-024 widened by him
 to two findings from the runner's first run: "could not read Password" labelled as a
 credential failure, and unique handover names so two runs in one second cannot collide.
-- [ ] S-024 bug  [bugs] heartbeat.sh: if the second lock check, after a successful push,
+- [x] S-024 bug  [bugs] heartbeat.sh: if the second lock check, after a successful push,
       finds a lock and exits 8, it overwrites that run's handover with "SKIPPED", so a
       successful push is recorded as skipped. Rare, seconds-wide window. (O2)
-- [ ] S-025 bug  [bugs] run-operations.sh empties last-error on every wake, so an error
+      Built by the Bugs chat, O-0003, all criteria closed, rerun by the control room,
+      merged into main 2725f13, 2026-09-21. Live at the next runner wake.
+- [x] S-025 bug  [bugs] run-operations.sh empties last-error on every wake, so an error
       survives only until the next clean run, 30 minutes, and can vanish unseen between
       two status reads. Keep the last non-empty error with its time instead. (O2)
+      Built by the Bugs chat, O-0003, all criteria closed, rerun by the control room,
+      merged into main 2725f13, 2026-09-21. Live at the next runner wake.
 
 ## Next release v0.2.0, M1. 8 stories, all feature, all [evolutions]
 Starts building only when S-004 passes. Designs are written now, under order O-0002.
@@ -73,24 +77,38 @@ and it also closes X-001.
       fields (D-020). Snapshots under archives/releases/. Build after S-004.
 - [ ] S-017 feature  [evolutions]  brief.sh <project>, the generated opener under 60
       lines. Retires docs/OPEN_SESSION_PROMPT.md and the per-chat prompts.
+      Design proposed 2026-09-21 by the Evolutions chat, O-0004, merged e9f323d:
+      "docs/stories/S-017-brief-sh-design.md". Open questions put to Yassir 2026-09-21.
 - [ ] S-018 feature  [evolutions]  status.py generates status/status.json from the hub,
       so the status stops being hand-written. Absorbs S-015's dead-man check on
       bus/heartbeat/alive.
+      Design proposed 2026-09-21 by the Evolutions chat, O-0004, merged e9f323d:
+      "docs/stories/S-018-status-py-design.md". Open questions put to Yassir 2026-09-21.
 - [ ] S-019 feature  [evolutions]  audit.py, nightly through the runner: residency,
       policy drift, derogation expiry, stale claims, and the dispatch checks that close
       D-007, D-014, D-016 and D-018.
+      Design proposed 2026-09-21 by the Evolutions chat, O-0004, merged e9f323d:
+      "docs/stories/S-019-audit-py-design.md". Open questions put to Yassir 2026-09-21.
 - [ ] S-020 feature  [evolutions]  mirror.sh, incremental sha256 mirror to the D-003
       target. Needs Yassir's answer on the external drive.
+      Design proposed 2026-09-21 by the Evolutions chat, O-0004, merged e9f323d:
+      "docs/stories/S-020-mirror-sh-design.md". Open questions put to Yassir 2026-09-21.
 - [ ] S-021 feature  [evolutions]  promote heartbeat.sh and run-operations.sh from dev/
       to prod/ with promote.sh. M1's exit test, closes X-001. Constraint found in
       review 2026-09-21: the runner app has the dev/ dispatcher path built into it, and
       rebuilding the app loses its macOS grant (S-015, U3). The design must repoint the
       app to prod/ without a rebuild, for example through one stable indirection file.
       And per D-019, promote refuses without a smoke check: dev/bin/smoke.sh must exist first.
+      Design proposed 2026-09-21 by the Evolutions chat, O-0004, merged e9f323d:
+      "docs/stories/S-021-promote-heartbeat-design.md". Open questions put to Yassir 2026-09-21.
 - [ ] S-022 feature  [evolutions]  adopt platform-architecture, adoption steps 1 to 8,
       the docs-only rehearsal of the pipeline. First project adopted after the Tower.
+      Design proposed 2026-09-21 by the Evolutions chat, O-0004, merged e9f323d:
+      "docs/stories/S-022-adopt-platform-architecture-design.md". Open questions put to Yassir 2026-09-21.
 - [ ] S-023 feature  [evolutions]  private remote for the "AI Control Tower" repo,
       personalai-control-tower, so the Tower's own code has an offsite copy.
+      Design proposed 2026-09-21 by the Evolutions chat, O-0004, merged e9f323d:
+      "docs/stories/S-023-private-remote-design.md". Open questions put to Yassir 2026-09-21.
 
 ## Later, M3, the UI
 - [ ] S-012 UI server basis, AI Control Tower/dev/ui (Flask app + templates, reads
@@ -110,6 +128,8 @@ and it also closes X-001.
       validated prompt on. Replaces doing intake in chat. (O2)  added 2026-09-20 on
       Yassir's instruction. Story file: "AI Control Tower/docs/stories/S-013-raw-note-intake-ui.md".
       Design file owed before any code, per policy/self-governance.md.
+      Design proposed 2026-09-21 by the Evolutions chat, O-0004, merged e9f323d:
+      "docs/stories/S-013-raw-note-intake-ui.md". Open questions put to Yassir 2026-09-21.
 
 ## Operations (D-016)
 Runs the Tower owns. Unchanged code, evidence in bus/. No chat holds them: after S-015
@@ -120,11 +140,11 @@ every one is dispatched by the runner, run-operations.sh, per D-017.
 
 ## Work chats (D-018)
 - Control room, this project's standing chat: shared files, merges, dispatch, status.
-- Bugs, "AI Control Tower, Bugs": [bugs] stories, L1, clone .chats/bugs. O-0001 done
-  and merged. Current order O-0003, S-025 and S-024.
+- Bugs, "AI Control Tower, Bugs": [bugs] stories, L1, clone .chats/bugs. O-0001 and
+  O-0003 done and merged. No order in flight.
 - Evolutions, "AI Control Tower, Evolutions": [evolutions] stories, L2, design only
-  until S-004, clone .chats/evolutions. O-0002 delivered S-016's design. Current order
-  O-0004, S-018 onward.
+  until S-004, clone .chats/evolutions. O-0002 and O-0004 delivered nine designs, all
+  merged. No order in flight.
 Prompts: _tower/docs/CHAT_PROMPT_BUGS.md and CHAT_PROMPT_EVOLUTIONS.md.
 
 If M0 fails, orders become numbered launchers Yassir starts before bed and nothing else

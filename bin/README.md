@@ -1,5 +1,9 @@
 # bin
 
+The tools below live in "AI Control Tower/dev/bin/", and in "AI Control Tower/prod/bin/"
+after their first promote, not here. This folder holds only this README. Corrected
+2026-09-21, found by the Evolutions chat while designing S-017.
+
 Empty on purpose. M0 and M1 create these, in this order:
 
     brief.sh <project>     the generated opening context, under 60 lines

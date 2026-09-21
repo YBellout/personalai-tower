@@ -1,38 +1,38 @@
 {
-  "generated_at": "2026-09-21T17:15:00-04:00",
+  "generated_at": "2026-09-21T18:05:00-04:00",
   "generated_by": "control room, session 011gf314me9VbMwtXMr9vTjp",
   "light": "amber",
-  "headline": "The runner works: five automatic runs in a row since 15:08, no errors. What stands between you and the three-day test is now GitHub alone.",
+  "headline": "Both work chats delivered and closed: two bug fixes merged and live, eight M1 designs merged. M0 still waits on GitHub alone.",
   "your_actions": [
     {
       "n": 1,
-      "do": "GitHub: empty private repo personalai-tower, a token for it only, then connect-github. This is the last thing blocking the three-day test",
+      "do": "Answer the Evolutions chat's design questions, grouped into three",
+      "who": "only you",
+      "where": "this chat",
+      "button": "none",
+      "minutes": 4
+    },
+    {
+      "n": 2,
+      "do": "GitHub: empty private repo personalai-tower, a token for it only, then connect-github. The last thing blocking the three-day test",
       "who": "only you, the token is a secret",
       "where": "github.com/new, then AI Control Tower/launchers/connect-github.command",
       "button": "link",
       "minutes": 6
     },
     {
-      "n": 2,
+      "n": 3,
       "do": "Check Privacy and Security: the runner under Files and Folders, bash not under Full Disk Access, and tell me",
       "who": "only you",
       "where": "System Settings",
       "button": "none",
       "minutes": 1
-    },
-    {
-      "n": 3,
-      "do": "In each of the two new chats, approve folder access and then delete permission when asked",
-      "who": "only you, approvals are yours",
-      "where": "the Bugs and Evolutions chats",
-      "button": "none",
-      "minutes": 1
     }
   ],
   "claude_next": [
-    "After your push: confirm origin/main, privacy and the first automatic push, then start S-004's three days",
-    "Review and merge the work chats' reports as they come in",
-    "Test S-015 C3, the dead-man check, when you are ready to revoke the grant for an hour"
+    "Record your answers as decisions and fold them into the eight designs",
+    "Watch the next runner wakes on the merged heartbeat code",
+    "After your push: confirm origin/main and privacy, then start S-004"
   ],
   "milestone": {
     "release": "v0.1.0",
@@ -48,43 +48,37 @@
       "id": "S-015",
       "title": "Runner app, bug",
       "state": "in_progress",
-      "note": "C1 and C5 closed: five automatic runs in a row. Open: C2 your check, C3 the dead-man test"
+      "note": "C1 C4 C5 closed, C2 your check, C3 the dead-man test"
     },
     {
       "id": "S-002",
       "title": "git and private GitHub remote",
       "state": "waiting_user",
-      "note": "push fails: no credential yet"
+      "note": "push fails, no GitHub credential yet"
     },
     {
       "id": "S-003",
       "title": "Heartbeat",
       "state": "in_progress",
-      "note": "runs unattended every 30 minutes, push pending GitHub"
+      "note": "unattended every 30 minutes, push pending"
     },
     {
       "id": "S-004",
       "title": "Three days unattended",
       "state": "blocked",
-      "note": "blocked only by the first push now"
-    },
-    {
-      "id": "S-016",
-      "title": "promote and rollback design",
-      "state": "done",
-      "note": "accepted with three amendments, build after S-004"
+      "note": "blocked only by the first push"
     },
     {
       "id": "S-024/S-025",
-      "title": "two small bug fixes, Bugs chat, O-0003",
-      "state": "not_started",
-      "note": "accepted, S-024 widened, starts when you open the chat"
+      "title": "two small bug fixes",
+      "state": "done",
+      "note": "merged 2725f13, live at the next wake"
     },
     {
-      "id": "S-018",
-      "title": "status.py design, Evolutions chat, O-0004",
-      "state": "not_started",
-      "note": "starts when you open the chat"
+      "id": "S-017..S-023, S-013",
+      "title": "eight designs, Evolutions chat",
+      "state": "waiting_user",
+      "note": "merged e9f323d, 18 questions awaiting you"
     }
   ],
   "projects": [
