@@ -25,6 +25,7 @@ Open, in the order they unblock each other:
       no push has ever succeeded, no origin/main. Waiting on Yassir's repo, token and
       connect-github.command. A push cannot be tested from the Claude VM, osxkeychain.
 - [ ] S-003 [control room] Heartbeat scheduled task: wake, read, append an event, commit, push,
+      write a handover  (O2) (est M)
       Since 2026-09-21 14:38 it runs through the runner, every 30 minutes, unattended,
       proven by five consecutive automatic runs. The push half still fails: no GitHub
       credential yet, so S-003 stays open on its push criterion only.
