@@ -18,7 +18,7 @@ charter:
     - O2 Two human steps per requirement: one pick and ten minutes
     - O3 Decided once here, dispatched everywhere, never re-decided per project
   non_goals:
-    - "redesigning the platform; that lives in the AI Architecture Tower project"
+    - "redesigning the platform; that lives in the platform-architecture project (registry/platform-architecture.yml)"
     - "becoming a project that eats the projects it governs"
   constraints:
     - "non-technical operator: git is never typed, every long job is a numbered launcher"
@@ -45,10 +45,10 @@ autonomy:
   budget_usd_month: 15
 
 control_room:
-  chat: ""                  # RELEASED 2026-09-20. The next chat sets this as its first
-                            # write, per docs/OPEN_SESSION_PROMPT.md. If it is still empty,
-                            # no chat is holding the control room and nothing should write.
-  opened: ""
+  chat: "https://claude.ai/code/session_011gf314me9VbMwtXMr9vTjp"   # re-claimed 2026-09-20
+                            # after the handoff, because Yassir carried on in this chat.
+                            # Released again at close. Empty means no chat holds the hub.
+  opened: 2026-09-20
   refresh_after_days: 30
   last_folded: "2026-09-20"   # this session's work folded into docs/HANDOVER.md and committed
 

@@ -54,13 +54,17 @@ Already governed, status `importing`. Next actions, which are M0:
 - S-004 Three unattended nights. On pass, status goes `importing` to `active`.
 - X-001 needs granting or denying before S-003 writes a line of code.
 
-### 2. ai-architecture-tower, docs-only, the cheap rehearsal
+### 2. platform-architecture, docs-only, the cheap rehearsal
+
+Formerly listed as ai-architecture-tower. Renamed 2026-09-20, same project, now also
+covering hardware purchases, VPN and network config, and IoT architecture, for both the
+MacBook setup and the future Mac mini.
 
 The right M1 candidate. It has no code, no data and nothing at risk, so it
 exercises steps 1 to 8 end to end in an afternoon and finds the holes in the
 pipeline before a project with real files goes through it.
 
-- Create `AI Architecture Tower/docs/` under the root, one repo.
+- Create `Platform Architecture/docs/` under the root, one repo.
 - Set the status line by re-reading the platform doc, every time, never cached.
 - Note: the design doc's M1 exit test is written for a project with code. Against
   a docs-only project it cannot be run as written, so M1 either keeps a code

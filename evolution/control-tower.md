@@ -42,6 +42,28 @@
       "AI Control Tower" has no git repo of its own yet (S-002 note: _tower first),
       so this is not yet committed anywhere.
 
+## Evolutions, backlog (D-016)
+Bug fixes and feature evolutions from stories. Each one tagged. Not in the M0 count,
+not before S-004 unless Yassir pulls one forward, as he did S-012.
+- [ ] S-013 feature  Raw-note intake UI in the Tower UI (dev/ui): one text field where
+      Yassir drops unstructured notes, and the page runs the D-007 flow in the browser,
+      correct, restructure, clarify (at most three questions), validate, then hands the
+      validated prompt on. Replaces doing intake in chat. (O2)  added 2026-09-20 on
+      Yassir's instruction. Story file: "AI Control Tower/docs/stories/S-013-raw-note-intake-ui.md".
+      Design file owed before any code, per policy/self-governance.md.
+- [ ] S-014 bug      heartbeat.sh does not handle a stale .git/index.lock: an abandoned
+      lock (seen twice on 2026-09-20, once by the 18:20 session, once by the 21:30 one)
+      blocks its commit every 30 minutes until someone deletes the file by hand.
+      Remove a lock older than a few minutes with no git process holding it, and say
+      so in the report. Belongs before S-004 starts. (O2)  added 2026-09-20.
+
+## Operations (D-016)
+Runs the Tower owns. Unchanged code, evidence in bus/.
+- heartbeat, every 30 minutes under launchd on the Mac (S-003b, X-001). Evidence:
+  bus/events.log, bus/heartbeat/last-success, bus/handover/*-heartbeat.md. Not yet
+  proven to wake by itself.
+- nightly audit, promote, backup: not built, M1 and later.
+
 Exit test for M0: three clean nights. If it fails, orders become numbered launchers
 Yassir starts before bed and nothing else in the design changes.
 
@@ -75,6 +97,10 @@ on 2026-09-20 and no longer blocks S-003. Its closing trigger stands: M1 deliver
 bin/promote.sh, the heartbeat is promoted, the derogation closes.
 
 ## Accepted decisions
+- D-016 Two work streams, Operations (batch and execution runs) and Evolutions (bug
+  fixes plus feature evolutions from stories), for the Tower and every governed
+  project. Scope global, answered 2026-09-20. decisions/D-016.md. Applied to this map
+  in the same commit, the two headings above. Closes on the M1 audit.
 - D-015 The control room is the status dashboard. Status on the word `status` and after
   every step, read fresh, one fixed layout, data in status/status.json for the future
   UI. Answered 2026-09-20. decisions/D-015.md, story S-011.

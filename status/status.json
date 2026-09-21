@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-20T14:25:26-04:00",
+  "generated_at": "2026-09-20T21:35:00-04:00",
   "generated_by": "control room",
   "light": "amber",
-  "headline": "M0 install nearly done. Heartbeat ran once by hand, its automatic wake is not proven yet. GitHub connection waits on you.",
+  "headline": "M0 install nearly done. Heartbeat ran once by hand, its automatic wake is not proven yet. GitHub connection waits on you. Hub now carries D-016 and the S-013 backlog story.",
   "your_actions": [
     {
       "n": 1,
@@ -81,6 +81,18 @@
       "title": "Three days unattended",
       "state": "blocked",
       "note": "starts after the first successful push"
+    },
+    {
+      "id": "S-013",
+      "title": "Raw-note intake UI (Evolutions, feature)",
+      "state": "not_started",
+      "note": "backlog, design file owed first"
+    },
+    {
+      "id": "S-014",
+      "title": "Heartbeat stale index.lock fix (Evolutions, bug)",
+      "state": "not_started",
+      "note": "before S-004 starts"
     }
   ],
   "projects": [
@@ -91,10 +103,10 @@
       "next": "finish M0"
     },
     {
-      "id": "ai-architecture-tower",
-      "name": "AI Architecture Tower",
+      "id": "platform-architecture",
+      "name": "Platform Architecture",
       "status": "unmanaged",
-      "next": "adopt first, after M0"
+      "next": "adopt second, after M0; scope now includes hardware, network, IoT"
     },
     {
       "id": "family-school-dashboard",
@@ -116,9 +128,9 @@
     }
   ],
   "watch": [
-    "Automatic wake of the heartbeat not proven (no run at 13:35)",
+    "Automatic wake of the heartbeat not proven (no run since 13:05)",
     "Hub has no offsite copy until the first push",
-    "No local mirror yet (D-003)"
+    "Stale .git/index.lock hit twice today, S-014 fixes it in the heartbeat"
   ],
   "heartbeat": {
     "installed": true,
@@ -132,6 +144,7 @@
     "registry",
     "config.yml",
     "git",
-    "bus/events.log"
+    "bus/events.log",
+    "decisions/D-016.md"
   ]
 }

@@ -204,6 +204,19 @@ D-002's push (handle is filled, the three GitHub actions are not done), D-003 mi
 destination, D-004 ratchet trigger (not due), D-006 stray-scan grants, D-013 M1's exit
 test question. None of these are S-012's to resolve.
 
+## New since the last close, 2026-09-20 21:35
+
+Three governance changes, no code, hold untouched. Detail in
+`bus/handover/2026-09-20-2135-d016-platform-scope-s013.md`.
+
+- `registry/platform-architecture.yml`, renamed from ai-architecture-tower, same
+  project, scope expanded to hardware purchases, VPN and network config, and IoT
+  architecture, for both the MacBook setup and the future Mac mini.
+- `decisions/D-016.md`, two work streams, Operations and Evolutions, scope global.
+- `evolution/control-tower.md`, Evolutions backlog (S-013 raw-note intake UI, feature;
+  S-014 heartbeat stale-lock fix, bug) and Operations section.
+- `"AI Control Tower/docs/stories/S-013-raw-note-intake-ui.md"`.
+
 ## One writer
 
 This session is closed and writes nothing further. The next chat opens with
