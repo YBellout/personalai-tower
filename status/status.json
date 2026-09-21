@@ -2,27 +2,27 @@
   "generated_at": "2026-09-21T14:45:00-04:00",
   "generated_by": "control room, session 011gf314me9VbMwtXMr9vTjp",
   "light": "amber",
-  "headline": "Both work chats closed cleanly and two new orders are ready. R1 is not moving: the runner is still not installed, and no push has ever succeeded.",
+  "headline": "Runner installed: at 14:38 the first automatic run reached the hub. Two unattended wakes due by 15:38 close most of S-015. Three designs accepted.",
   "your_actions": [
     {
       "n": 1,
-      "do": "Double-click install-runner.command, Allow for Documents, Always Allow for the Keychain, then leave the Mac awake and untouched for about an hour. This is what R1 is waiting on",
-      "who": "only you, two macOS grants",
-      "where": "AI Control Tower/launchers/install-runner.command",
-      "button": "launcher",
-      "minutes": 3
+      "do": "Leave the Mac awake and untouched until about 15:40, two runner wakes",
+      "who": "only you",
+      "where": "the Mac",
+      "button": "none",
+      "minutes": 0
     },
     {
       "n": 2,
-      "do": "Accept or comment on three designs: S-016 promote and rollback, S-024 and S-025, the two small bug fixes",
-      "who": "only you, acceptance is yours",
-      "where": "AI Control Tower/docs/stories/",
-      "button": "link",
-      "minutes": 8
+      "do": "Then check Privacy and Security: the runner under Files and Folders, bash not under Full Disk Access, and tell me",
+      "who": "only you",
+      "where": "System Settings",
+      "button": "none",
+      "minutes": 1
     },
     {
       "n": 3,
-      "do": "Open two new chats, AI Control Tower, Bugs and AI Control Tower, Evolutions, and paste the same two prompts as last time",
+      "do": "Open two new chats, AI Control Tower, Bugs and AI Control Tower, Evolutions, and paste the same two prompts",
       "who": "only you, only you can open a chat",
       "where": "_tower/docs/CHAT_PROMPT_BUGS.md, CHAT_PROMPT_EVOLUTIONS.md",
       "button": "link",
@@ -30,7 +30,7 @@
     },
     {
       "n": 4,
-      "do": "GitHub: empty private repo personalai-tower, a token for it only, then connect-github",
+      "do": "GitHub: empty private repo personalai-tower, a token for it only, then connect-github. It also stops the heartbeat committing every 30 minutes",
       "who": "only you, the token is a secret",
       "where": "github.com/new, then AI Control Tower/launchers/connect-github.command",
       "button": "link",
@@ -38,9 +38,9 @@
     }
   ],
   "claude_next": [
-    "After your install: confirm two unattended wakes and an automatic Mac run, which closes most of S-015",
-    "Record your design acceptances on main so both chats' gates open",
-    "Review and merge each chat's work when it reports ready"
+    "At about 15:40, confirm alive advanced on two unattended wakes and an automatic Mac run, closing S-015 C1 and C5",
+    "Review and merge the Bugs chat's S-025 and S-024 when it reports",
+    "After the first push: verify origin/main and privacy, then start S-004"
   ],
   "milestone": {
     "release": "v0.1.0",
@@ -55,38 +55,38 @@
     {
       "id": "S-015",
       "title": "Runner app, bug",
-      "state": "waiting_user",
-      "note": "merged, waiting for your install since 08:25"
+      "state": "in_progress",
+      "note": "installed 14:38, first run reached the hub, two unattended wakes due by 15:38"
     },
     {
       "id": "S-002",
       "title": "git and private GitHub remote",
       "state": "waiting_user",
-      "note": "no push has ever succeeded"
+      "note": "push fails: no credential yet"
     },
     {
       "id": "S-003",
       "title": "Heartbeat",
-      "state": "blocked",
-      "note": "blocked by macOS until the runner is installed"
+      "state": "in_progress",
+      "note": "runs through the runner since 14:38, push pending GitHub"
     },
     {
       "id": "S-004",
       "title": "Three days unattended",
       "state": "blocked",
-      "note": "after your install and the first push"
+      "note": "after S-015 closes and the first push"
     },
     {
       "id": "S-016",
       "title": "promote and rollback design",
-      "state": "waiting_user",
-      "note": "merged, awaiting your acceptance"
+      "state": "done",
+      "note": "accepted with three amendments, build after S-004"
     },
     {
       "id": "S-024/S-025",
       "title": "two small bug fixes, Bugs chat, O-0003",
-      "state": "waiting_user",
-      "note": "three-line designs awaiting your acceptance"
+      "state": "not_started",
+      "note": "accepted, S-024 widened, starts when you open the chat"
     },
     {
       "id": "S-018",
@@ -129,15 +129,16 @@
   ],
   "watch": [
     "No offsite copy of anything exists: no push has ever succeeded",
-    "Work-chat git depends on each chat's delete permission taking effect. It failed once today in the Evolutions chat",
+    "Until GitHub is connected the heartbeat commits twice every 30 minutes",
     "D-003: no external drive confirmed, the mirror falls back to the internal disk"
   ],
   "heartbeat": {
     "installed": true,
-    "last_run": "2026-09-20 13:05:15",
-    "last_result": "21 automatic runs since 13:05, all exit 126, Operation not permitted",
+    "runner": true,
+    "last_run": "2026-09-21 14:38:51",
+    "last_result": "PUSH FAILED: could not read Password, no GitHub credential yet",
     "last_success_day": null,
-    "alive": "no liveness file yet, the runner is not installed"
+    "alive": "2026-09-21T18:38:51Z"
   },
   "sources": [
     "bus/handover, newest by mtime",

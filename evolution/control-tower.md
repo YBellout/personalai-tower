@@ -11,11 +11,10 @@ M0 cannot pass without them. Exit test unchanged: three unattended days, each wi
 commit and a push. Tags: [bugs] and [evolutions] name the work chat that holds it.
 
 Open, in the order they unblock each other:
-- [ ] S-015 bug  [bugs] The runner app, D-017: unattended jobs enter ~/Documents through one
-      granted app. Built by the Bugs chat, order O-0001, merged into main ebe0c8d on
-      2026-09-21. C4 closed, dispatcher rerun by the control room. C1, C2, C3, C5 open:
-      they need Yassir to run launchers/install-runner.command on the Mac, click Allow
-      twice, and leave the Mac untouched for about an hour. Blocks S-004. (O2)
+- [ ] S-015 bug  [bugs] The runner app, D-017. Merged ebe0c8d. Installed by Yassir 2026-09-21
+      14:38: the runner reached the hub, alive written, heartbeat ran, committed f4b9dc0,
+      last-error empty. C4 closed. C1 and C5 wait for two unattended wakes, due about
+      15:08 and 15:38. C2 waits for Yassir's look at Privacy and Security. C3 after. (O2)
 - [x] S-014 bug  [bugs] Stale git lock handling in heartbeat.sh. Built by the Bugs chat,
       order O-0001, C1 to C4 closed. C2, C3 and C4 rerun independently by the control
       room before merging. Merged into main ebe0c8d, 2026-09-21. (O2)
@@ -50,7 +49,9 @@ Done:
 
 ## Unscheduled [bugs], found in the control room's review of O-0001
 Neither blocks S-004, so neither is in a release count. Dispatched to the Bugs chat in
-O-0003 on 2026-09-21, three-line design files proposed, awaiting Yassir's acceptance.
+O-0003 on 2026-09-21. Both designs accepted by Yassir 2026-09-21; S-024 widened by him
+to two findings from the runner's first run: "could not read Password" labelled as a
+credential failure, and unique handover names so two runs in one second cannot collide.
 - [ ] S-024 bug  [bugs] heartbeat.sh: if the second lock check, after a successful push,
       finds a lock and exits 8, it overwrites that run's handover with "SKIPPED", so a
       successful push is recorded as skipped. Rare, seconds-wide window. (O2)
@@ -66,7 +67,10 @@ and it also closes X-001.
 - [ ] S-016 feature  [evolutions]  promote.sh and rollback.sh, with the sha256 release
       manifest in prod/ that D-009 requires. Everything else in M1 leans on it.
       Design proposed 2026-09-21, "docs/stories/S-016-promote-rollback-design.md", its
-      three open items picked by Yassir and recorded as D-019. Awaiting acceptance.
+      three open items picked by Yassir and recorded as D-019. Accepted by Yassir
+      2026-09-21 with three amendments: promote never reads this map, a failed push
+      never blocks a promote, and promote.sh writes only the registry's version
+      fields (D-020). Snapshots under archives/releases/. Build after S-004.
 - [ ] S-017 feature  [evolutions]  brief.sh <project>, the generated opener under 60
       lines. Retires docs/OPEN_SESSION_PROMPT.md and the per-chat prompts.
 - [ ] S-018 feature  [evolutions]  status.py generates status/status.json from the hub,
@@ -137,6 +141,8 @@ promotes it, which D-013 makes the same event as M1's exit test. X-002, the dev 
 past the M0 hold, closes when S-004 passes.
 
 ## Accepted decisions
+- D-020 promote.sh owns the registry's version fields and nothing else shared, a named
+  exception to D-018. Amendment (a) of S-016, Yassir 2026-09-21. decisions/D-020.md.
 - D-019 How promote.sh behaves at its edges: proceeds to smoke when a project has no
   tests, prunes its own snapshots past five without a derogation, refuses when there is
   no smoke check. Picked by Yassir 2026-09-21 in the Evolutions chat. decisions/D-019.md.
