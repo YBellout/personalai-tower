@@ -2,7 +2,7 @@ order: O-0002
 outcome: partial
 mode: design
 stories:
-  S-016: { result: design_proposed, commit: d3c69d4, file: "AI Control Tower/docs/stories/S-016-promote-rollback-design.md" }
+  S-016: { result: design_proposed, commit: d3c69d4, file: "AI Control Tower/docs/stories/S-016-promote-rollback-design.md", note: "Yassir's three picks (see decided[]) are written into the working tree but not yet committed, blocked, see notes[]." }
   S-018: { result: not_started }
   S-019: { result: not_started }
   S-020: { result: not_started }
@@ -15,11 +15,13 @@ files_touched: ["AI Control Tower/docs/stories/S-016-promote-rollback-design.md"
 cost_usd: 0
 decided:
   - "S-016: promote and rollback are Yassir-triggered, not dispatched by run-operations.sh; D-017 scopes the runner to unattended jobs only"
-  - "S-016: archive retention past five is treated as this rotation's own byproduct, not a self-governance delete, pending Yassir's read"
+  - "S-016, D1, picked by Yassir 2026-09-21: promote proceeds to the smoke check when health.tests is empty, rather than refusing outright"
+  - "S-016, D2, picked by Yassir 2026-09-21: pruning past five archived snapshots is not a self-governance delete, no derogation needed"
+  - "S-016, D3, picked by Yassir 2026-09-21: promote refuses with a named reason when health.smoke is empty, rather than skipping verification"
 needs:
-  - "S-016, D1: whether promote refuses outright when a project's registry declares no test suite (health.tests empty, true for control-tower today), or proceeds to the smoke check. Recommend: proceed, refuse would block every promote until a suite exists. See design file, Needs a decision, item 1."
-  - "S-016, D2: whether pruning the sixth-oldest prod/ archive snapshot needs a self-governance derogation. Recommend: no, it is the rotation's own byproduct, not project-file deletion. Item 2."
-  - "S-016, D3: control-tower has no health.smoke script yet either. Recommend: promote refuses with a named reason until one exists, which puts writing dev/bin/smoke.sh in front of S-021. Item 3."
-next: "Awaiting Yassir's picks on D1 to D3, then S-018 (status.py) per O-0002's order_of_work."
+  - "control room: fold D1 to D3 above into a numbered decision on its own writes (decisions/, registry, self-governance reading are shared files); not done here per D-018"
+  - "control room, or a later session with delete working: clear the evolutions clone's stuck .git/HEAD.lock and .git/index.lock so the fold-in-picks commit can land"
+next: "Blocked on the two items above before S-016 can close. S-018 (status.py) is next per O-0002's order_of_work and does not depend on either."
 notes:
-  - "git in this clone cannot unlink its own tmp/lock files yet (delete not granted in this connected folder); commits still succeed, noted so it isn't mistaken for a stale index.lock"
+  - "the evolutions clone's .git/HEAD.lock survived a first commit's own cleanup failure (delete not permitted on this connected folder), then blocked the next commit outright. device_request_delete_permission reported success for ~/Documents/PersonalAI, but rm and mv both still failed with Operation not permitted on .git/HEAD.lock and, once git status ran again, .git/index.lock too. Stopped retrying per the git-locks rule rather than risk more stuck locks. Nothing lost: d3c69d4 (the original design) is committed; the fold-in-picks edit is saved in the working tree, uncommitted."
+  - "flagged to Yassir directly in this chat; needs either the delete grant actually taking effect, or the control room clearing the stale locks by hand next time it holds the hub."

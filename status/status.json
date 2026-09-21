@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-09-21T08:25:00-04:00",
+  "generated_at": "2026-09-21T08:30:00-04:00",
   "generated_by": "control room, session 011gf314me9VbMwtXMr9vTjp",
   "light": "amber",
-  "headline": "S-014 merged. S-015 merged and waiting for your one-time install on the Mac. Both work chats running.",
+  "headline": "Runner not installed yet, so the heartbeat is still blocked. S-016 design merged with your three picks recorded as D-019.",
   "your_actions": [
     {
       "n": 1,
-      "do": "Double-click install-runner.command, click Allow when macOS asks about Documents, Always Allow for the Keychain, then leave the Mac awake and untouched for about an hour",
+      "do": "Double-click install-runner.command, Allow for Documents, Always Allow for the Keychain, then leave the Mac awake and untouched for about an hour",
       "who": "only you, two macOS grants",
       "where": "AI Control Tower/launchers/install-runner.command",
       "button": "launcher",
@@ -14,14 +14,22 @@
     },
     {
       "n": 2,
-      "do": "Then open System Settings, Privacy and Security: confirm the runner is under Files and Folders and bash is not under Full Disk Access, and tell me",
-      "who": "only you, it is your System Settings",
+      "do": "Then check Privacy and Security: the runner under Files and Folders, bash not under Full Disk Access, and tell me",
+      "who": "only you",
       "where": "System Settings",
       "button": "none",
       "minutes": 1
     },
     {
       "n": 3,
+      "do": "Accept or comment on the S-016 promote and rollback design",
+      "who": "only you, acceptance is yours",
+      "where": "AI Control Tower/docs/stories/S-016-promote-rollback-design.md",
+      "button": "link",
+      "minutes": 5
+    },
+    {
+      "n": 4,
       "do": "GitHub: empty private repo personalai-tower, a token for it only, then connect-github",
       "who": "only you, the token is a secret",
       "where": "github.com/new, then AI Control Tower/launchers/connect-github.command",
@@ -30,8 +38,8 @@
     }
   ],
   "claude_next": [
-    "After your install: confirm alive advanced on two unattended wakes, and a Mac line in events.log from an automatic run",
-    "Review the Evolutions chat's S-016 design when it reports",
+    "After your install: confirm alive advanced on two unattended wakes, and an automatic Mac run in events.log",
+    "Review S-018, status.py, when the Evolutions chat reports it",
     "After the first push: verify origin/main and privacy, then start S-004"
   ],
   "milestone": {
@@ -71,8 +79,8 @@
     {
       "id": "S-016",
       "title": "promote and rollback design, Evolutions chat",
-      "state": "in_progress",
-      "note": "claimed 08:10, design being written"
+      "state": "waiting_user",
+      "note": "design merged febc99c, your three picks recorded as D-019, awaiting acceptance"
     }
   ],
   "projects": [
@@ -109,7 +117,7 @@
   ],
   "watch": [
     "No offsite copy of anything exists: no push has ever succeeded",
-    "Three chats will now work the hub. Claims and the control-room merge are the only guard until the M1 audit",
+    "Work-chat git depends on each chat's delete permission taking effect. It failed once today in the Evolutions chat",
     "D-003: no external drive confirmed, the mirror falls back to the internal disk"
   ],
   "heartbeat": {

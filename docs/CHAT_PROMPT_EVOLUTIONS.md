@@ -57,6 +57,13 @@ shape of the design doc's report example, and a new file in _tower/bus/handover/
 <stamp>-evolutions-<slug>.md. Then release your claim. Never commit _tower, the control
 room does.
 
+GIT NEEDS DELETE ACCESS, CHECK IT FIRST. git removes its own lock files after every
+operation, and this folder refuses deletes until a person approves them for your
+session. So before your first git command: request delete permission for
+~/Documents/PersonalAI, then prove it with a probe, create and remove one file inside
+your clone. If the removal fails, run no git at all, remove nothing, and say so in your
+report. A stuck lock is far more expensive than a late start. Remove the probe.
+
 GIT LOCKS. A .git/index.lock with no git process running and older than 5 minutes
 is stale: remove it and say so in the report. A fresh one means someone is working:
 wait a minute, retry once, then report and stop.

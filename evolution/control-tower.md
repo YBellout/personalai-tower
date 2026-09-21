@@ -64,6 +64,8 @@ promote a good change, roll it back, and the heartbeat still runs. S-021 is that
 and it also closes X-001.
 - [ ] S-016 feature  [evolutions]  promote.sh and rollback.sh, with the sha256 release
       manifest in prod/ that D-009 requires. Everything else in M1 leans on it.
+      Design proposed 2026-09-21, "docs/stories/S-016-promote-rollback-design.md", its
+      three open items picked by Yassir and recorded as D-019. Awaiting acceptance.
 - [ ] S-017 feature  [evolutions]  brief.sh <project>, the generated opener under 60
       lines. Retires docs/OPEN_SESSION_PROMPT.md and the per-chat prompts.
 - [ ] S-018 feature  [evolutions]  status.py generates status/status.json from the hub,
@@ -79,6 +81,7 @@ and it also closes X-001.
       review 2026-09-21: the runner app has the dev/ dispatcher path built into it, and
       rebuilding the app loses its macOS grant (S-015, U3). The design must repoint the
       app to prod/ without a rebuild, for example through one stable indirection file.
+      And per D-019, promote refuses without a smoke check: dev/bin/smoke.sh must exist first.
 - [ ] S-022 feature  [evolutions]  adopt platform-architecture, adoption steps 1 to 8,
       the docs-only rehearsal of the pipeline. First project adopted after the Tower.
 - [ ] S-023 feature  [evolutions]  private remote for the "AI Control Tower" repo,
@@ -131,6 +134,9 @@ promotes it, which D-013 makes the same event as M1's exit test. X-002, the dev 
 past the M0 hold, closes when S-004 passes.
 
 ## Accepted decisions
+- D-019 How promote.sh behaves at its edges: proceeds to smoke when a project has no
+  tests, prunes its own snapshots past five without a derogation, refuses when there is
+  no smoke check. Picked by Yassir 2026-09-21 in the Evolutions chat. decisions/D-019.md.
 - D-018 Two work chats in parallel, Bugs and Evolutions, splitting D-016's Evolutions
   stream by tag. Control room sole writer of shared files, claims per chat, one clone
   per chat. R1 redefined to 13 stories. Answered 2026-09-20. decisions/D-018.md.
