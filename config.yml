@@ -12,7 +12,9 @@ tower_code_dev: AI Control Tower/dev
 mirror:
   targets:
     - name: local
-      path: "~/PersonalAI-mirror"   # D-003. Fallback. Replaced by the external drive's
+      path: "~/Documents/PersonalAI-mirror"   # D-003 fallback, moved by D-021 answer 5 so
+                          # the runner's existing Documents grant covers it. Replaced
+                          # by the external drive's
                           # path if Yassir has one, which is still to be confirmed.
       enabled: true       # enabled per D-003, but mirror.sh does not exist until M1:
                           # NOTHING IS BEING MIRRORED TODAY. Do not read this as backup.

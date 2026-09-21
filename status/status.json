@@ -1,19 +1,11 @@
 {
-  "generated_at": "2026-09-21T18:05:00-04:00",
+  "generated_at": "2026-09-21T18:10:00-04:00",
   "generated_by": "control room, session 011gf314me9VbMwtXMr9vTjp",
   "light": "amber",
-  "headline": "Both work chats delivered and closed: two bug fixes merged and live, eight M1 designs merged. M0 still waits on GitHub alone.",
+  "headline": "All eight M1 designs are complete, your answers recorded as D-021. M0 still waits on GitHub alone.",
   "your_actions": [
     {
       "n": 1,
-      "do": "Answer the Evolutions chat's design questions, grouped into three",
-      "who": "only you",
-      "where": "this chat",
-      "button": "none",
-      "minutes": 4
-    },
-    {
-      "n": 2,
       "do": "GitHub: empty private repo personalai-tower, a token for it only, then connect-github. The last thing blocking the three-day test",
       "who": "only you, the token is a secret",
       "where": "github.com/new, then AI Control Tower/launchers/connect-github.command",
@@ -21,18 +13,26 @@
       "minutes": 6
     },
     {
-      "n": 3,
+      "n": 2,
       "do": "Check Privacy and Security: the runner under Files and Folders, bash not under Full Disk Access, and tell me",
       "who": "only you",
       "where": "System Settings",
       "button": "none",
       "minutes": 1
+    },
+    {
+      "n": 3,
+      "do": "Not urgent: accept the eight M1 designs, whenever you want to read them. Nothing builds before the three-day test",
+      "who": "only you, acceptance is yours",
+      "where": "AI Control Tower/docs/stories/",
+      "button": "link",
+      "minutes": 20
     }
   ],
   "claude_next": [
-    "Record your answers as decisions and fold them into the eight designs",
-    "Watch the next runner wakes on the merged heartbeat code",
-    "After your push: confirm origin/main and privacy, then start S-004"
+    "Watch the runner's wakes on the merged heartbeat code",
+    "After your push: confirm origin/main and privacy, then start S-004",
+    "Test the dead-man check, S-015 C3, when you are ready"
   ],
   "milestone": {
     "release": "v0.1.0",
@@ -78,7 +78,7 @@
       "id": "S-017..S-023, S-013",
       "title": "eight designs, Evolutions chat",
       "state": "waiting_user",
-      "note": "merged e9f323d, 18 questions awaiting you"
+      "note": "questions answered, D-021, awaiting your acceptance"
     }
   ],
   "projects": [

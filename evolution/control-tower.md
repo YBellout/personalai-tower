@@ -78,21 +78,21 @@ and it also closes X-001.
 - [ ] S-017 feature  [evolutions]  brief.sh <project>, the generated opener under 60
       lines. Retires docs/OPEN_SESSION_PROMPT.md and the per-chat prompts.
       Design proposed 2026-09-21 by the Evolutions chat, O-0004, merged e9f323d:
-      "docs/stories/S-017-brief-sh-design.md". Open questions put to Yassir 2026-09-21.
+      "docs/stories/S-017-brief-sh-design.md". Open questions answered by Yassir 2026-09-21, D-021. Awaiting acceptance.
 - [ ] S-018 feature  [evolutions]  status.py generates status/status.json from the hub,
       so the status stops being hand-written. Absorbs S-015's dead-man check on
       bus/heartbeat/alive.
       Design proposed 2026-09-21 by the Evolutions chat, O-0004, merged e9f323d:
-      "docs/stories/S-018-status-py-design.md". Open questions put to Yassir 2026-09-21.
+      "docs/stories/S-018-status-py-design.md". Open questions answered by Yassir 2026-09-21, D-021. Awaiting acceptance.
 - [ ] S-019 feature  [evolutions]  audit.py, nightly through the runner: residency,
       policy drift, derogation expiry, stale claims, and the dispatch checks that close
       D-007, D-014, D-016 and D-018.
       Design proposed 2026-09-21 by the Evolutions chat, O-0004, merged e9f323d:
-      "docs/stories/S-019-audit-py-design.md". Open questions put to Yassir 2026-09-21.
+      "docs/stories/S-019-audit-py-design.md". Open questions answered by Yassir 2026-09-21, D-021. Awaiting acceptance.
 - [ ] S-020 feature  [evolutions]  mirror.sh, incremental sha256 mirror to the D-003
       target. Needs Yassir's answer on the external drive.
       Design proposed 2026-09-21 by the Evolutions chat, O-0004, merged e9f323d:
-      "docs/stories/S-020-mirror-sh-design.md". Open questions put to Yassir 2026-09-21.
+      "docs/stories/S-020-mirror-sh-design.md". Open questions answered by Yassir 2026-09-21, D-021. Awaiting acceptance.
 - [ ] S-021 feature  [evolutions]  promote heartbeat.sh and run-operations.sh from dev/
       to prod/ with promote.sh. M1's exit test, closes X-001. Constraint found in
       review 2026-09-21: the runner app has the dev/ dispatcher path built into it, and
@@ -100,15 +100,15 @@ and it also closes X-001.
       app to prod/ without a rebuild, for example through one stable indirection file.
       And per D-019, promote refuses without a smoke check: dev/bin/smoke.sh must exist first.
       Design proposed 2026-09-21 by the Evolutions chat, O-0004, merged e9f323d:
-      "docs/stories/S-021-promote-heartbeat-design.md". Open questions put to Yassir 2026-09-21.
+      "docs/stories/S-021-promote-heartbeat-design.md". Open questions answered by Yassir 2026-09-21, D-021. Awaiting acceptance.
 - [ ] S-022 feature  [evolutions]  adopt platform-architecture, adoption steps 1 to 8,
       the docs-only rehearsal of the pipeline. First project adopted after the Tower.
       Design proposed 2026-09-21 by the Evolutions chat, O-0004, merged e9f323d:
-      "docs/stories/S-022-adopt-platform-architecture-design.md". Open questions put to Yassir 2026-09-21.
+      "docs/stories/S-022-adopt-platform-architecture-design.md". Open questions answered by Yassir 2026-09-21, D-021. Awaiting acceptance.
 - [ ] S-023 feature  [evolutions]  private remote for the "AI Control Tower" repo,
       personalai-control-tower, so the Tower's own code has an offsite copy.
       Design proposed 2026-09-21 by the Evolutions chat, O-0004, merged e9f323d:
-      "docs/stories/S-023-private-remote-design.md". Open questions put to Yassir 2026-09-21.
+      "docs/stories/S-023-private-remote-design.md". Open questions answered by Yassir 2026-09-21, D-021. Awaiting acceptance.
 
 ## Later, M3, the UI
 - [ ] S-012 UI server basis, AI Control Tower/dev/ui (Flask app + templates, reads
@@ -129,7 +129,7 @@ and it also closes X-001.
       Yassir's instruction. Story file: "AI Control Tower/docs/stories/S-013-raw-note-intake-ui.md".
       Design file owed before any code, per policy/self-governance.md.
       Design proposed 2026-09-21 by the Evolutions chat, O-0004, merged e9f323d:
-      "docs/stories/S-013-raw-note-intake-ui.md". Open questions put to Yassir 2026-09-21.
+      "docs/stories/S-013-raw-note-intake-ui.md". Open questions answered by Yassir 2026-09-21, D-021. Awaiting acceptance.
 
 ## Operations (D-016)
 Runs the Tower owns. Unchanged code, evidence in bus/. No chat holds them: after S-015
@@ -161,6 +161,10 @@ promotes it, which D-013 makes the same event as M1's exit test. X-002, the dev 
 past the M0 hold, closes when S-004 passes.
 
 ## Accepted decisions
+- D-021 Answers to the eight M1 designs' open questions, fifteen of them, Yassir
+  2026-09-21. Among them: X-001 closes cleanly at S-021, the runner app rebuilt once and
+  pointed at prod/; the stray scan stays hand-run; the LLM wrapper is built once in
+  _shared; Platform Architecture's charter line confirmed. decisions/D-021.md.
 - D-020 promote.sh owns the registry's version fields and nothing else shared, a named
   exception to D-018. Amendment (a) of S-016, Yassir 2026-09-21. decisions/D-020.md.
 - D-019 How promote.sh behaves at its edges: proceeds to smoke when a project has no
