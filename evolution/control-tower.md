@@ -11,10 +11,11 @@ M0 cannot pass without them. Exit test unchanged: three unattended days, each wi
 commit and a push. Tags: [bugs] and [evolutions] name the work chat that holds it.
 
 Open, in the order they unblock each other:
-- [ ] S-015 bug  [bugs] The runner app, D-017. Merged ebe0c8d. Installed by Yassir 2026-09-21
-      14:38: the runner reached the hub, alive written, heartbeat ran, committed f4b9dc0,
-      last-error empty. C4 closed. C1 and C5 wait for two unattended wakes, due about
-      15:08 and 15:38. C2 waits for Yassir's look at Privacy and Security. C3 after. (O2)
+- [ ] S-015 bug  [bugs] The runner app, D-017. Merged ebe0c8d, installed by Yassir 2026-09-21
+      14:38. C1 and C5 closed 17:08: five automatic runs in a row, 15:08, 15:38, 16:08,
+      16:38, 17:08, each in events.log from host Yassirs-MacBook-Pro, alive advancing
+      every wake, last-error empty. C4 closed earlier. Open: C2, Yassir's look at Privacy
+      and Security; C3, the dead-man test, revoke the grant and watch the status go red. (O2)
 - [x] S-014 bug  [bugs] Stale git lock handling in heartbeat.sh. Built by the Bugs chat,
       order O-0001, C1 to C4 closed. C2, C3 and C4 rerun independently by the control
       room before merging. Merged into main ebe0c8d, 2026-09-21. (O2)
@@ -24,11 +25,9 @@ Open, in the order they unblock each other:
       no push has ever succeeded, no origin/main. Waiting on Yassir's repo, token and
       connect-github.command. A push cannot be tested from the Claude VM, osxkeychain.
 - [ ] S-003 [control room] Heartbeat scheduled task: wake, read, append an event, commit, push,
-      write a handover  (O2) (est M)
-      X-001 granted. S-003a accepted 2026-09-20, launchd agent every 30 minutes.
-      S-003b built and installed. launchd fires on schedule, 22 runs by 23:46, but
-      every automatic run is blocked by macOS privacy protection before the script
-      starts. Fixed by S-015 per D-017. S-014 and S-015 before S-004.
+      Since 2026-09-21 14:38 it runs through the runner, every 30 minutes, unattended,
+      proven by five consecutive automatic runs. The push half still fails: no GitHub
+      credential yet, so S-003 stays open on its push criterion only.
 - [ ] S-004 [control room] Run it three nights unattended, nobody touching the Mac  (O2) (est S)
 
 Done:
