@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-09-21T08:30:00-04:00",
+  "generated_at": "2026-09-21T14:45:00-04:00",
   "generated_by": "control room, session 011gf314me9VbMwtXMr9vTjp",
   "light": "amber",
-  "headline": "Runner not installed yet, so the heartbeat is still blocked. S-016 design merged with your three picks recorded as D-019.",
+  "headline": "Both work chats closed cleanly and two new orders are ready. R1 is not moving: the runner is still not installed, and no push has ever succeeded.",
   "your_actions": [
     {
       "n": 1,
-      "do": "Double-click install-runner.command, Allow for Documents, Always Allow for the Keychain, then leave the Mac awake and untouched for about an hour",
+      "do": "Double-click install-runner.command, Allow for Documents, Always Allow for the Keychain, then leave the Mac awake and untouched for about an hour. This is what R1 is waiting on",
       "who": "only you, two macOS grants",
       "where": "AI Control Tower/launchers/install-runner.command",
       "button": "launcher",
@@ -14,19 +14,19 @@
     },
     {
       "n": 2,
-      "do": "Then check Privacy and Security: the runner under Files and Folders, bash not under Full Disk Access, and tell me",
-      "who": "only you",
-      "where": "System Settings",
-      "button": "none",
-      "minutes": 1
+      "do": "Accept or comment on three designs: S-016 promote and rollback, S-024 and S-025, the two small bug fixes",
+      "who": "only you, acceptance is yours",
+      "where": "AI Control Tower/docs/stories/",
+      "button": "link",
+      "minutes": 8
     },
     {
       "n": 3,
-      "do": "Accept or comment on the S-016 promote and rollback design",
-      "who": "only you, acceptance is yours",
-      "where": "AI Control Tower/docs/stories/S-016-promote-rollback-design.md",
+      "do": "Open two new chats, AI Control Tower, Bugs and AI Control Tower, Evolutions, and paste the same two prompts as last time",
+      "who": "only you, only you can open a chat",
+      "where": "_tower/docs/CHAT_PROMPT_BUGS.md, CHAT_PROMPT_EVOLUTIONS.md",
       "button": "link",
-      "minutes": 5
+      "minutes": 2
     },
     {
       "n": 4,
@@ -38,9 +38,9 @@
     }
   ],
   "claude_next": [
-    "After your install: confirm alive advanced on two unattended wakes, and an automatic Mac run in events.log",
-    "Review S-018, status.py, when the Evolutions chat reports it",
-    "After the first push: verify origin/main and privacy, then start S-004"
+    "After your install: confirm two unattended wakes and an automatic Mac run, which closes most of S-015",
+    "Record your design acceptances on main so both chats' gates open",
+    "Review and merge each chat's work when it reports ready"
   ],
   "milestone": {
     "release": "v0.1.0",
@@ -54,9 +54,9 @@
   "stories": [
     {
       "id": "S-015",
-      "title": "Runner app, bug, Bugs chat",
+      "title": "Runner app, bug",
       "state": "waiting_user",
-      "note": "merged ebe0c8d, C4 closed, C1 C2 C3 C5 need your install"
+      "note": "merged, waiting for your install since 08:25"
     },
     {
       "id": "S-002",
@@ -68,7 +68,7 @@
       "id": "S-003",
       "title": "Heartbeat",
       "state": "blocked",
-      "note": "launchd fires, macOS blocks every run until the runner is installed"
+      "note": "blocked by macOS until the runner is installed"
     },
     {
       "id": "S-004",
@@ -78,9 +78,21 @@
     },
     {
       "id": "S-016",
-      "title": "promote and rollback design, Evolutions chat",
+      "title": "promote and rollback design",
       "state": "waiting_user",
-      "note": "design merged febc99c, your three picks recorded as D-019, awaiting acceptance"
+      "note": "merged, awaiting your acceptance"
+    },
+    {
+      "id": "S-024/S-025",
+      "title": "two small bug fixes, Bugs chat, O-0003",
+      "state": "waiting_user",
+      "note": "three-line designs awaiting your acceptance"
+    },
+    {
+      "id": "S-018",
+      "title": "status.py design, Evolutions chat, O-0004",
+      "state": "not_started",
+      "note": "starts when you open the chat"
     }
   ],
   "projects": [

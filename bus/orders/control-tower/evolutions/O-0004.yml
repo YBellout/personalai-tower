@@ -1,0 +1,32 @@
+id: O-0004
+project: control-tower
+chat: evolutions
+mode: design
+issued: 2026-09-21T14:40
+supersedes: "O-0002, for every story it left undone. O-0002 delivered S-016's design, merged febc99c, picks recorded as D-019."
+stories: [S-018, S-019, S-020, S-017, S-021, S-022, S-023, S-013]
+design_refs: []              # this order produces them
+gates:
+  all: "M0 hold: design files and documents only, no build, until S-004 passes"
+order_of_work: >
+  S-018 status.py first: it absorbs S-015's dead-man check, and knowledge/status.md step 7
+  is its specification for that part. Then S-019 audit, S-020 mirror, S-017 brief. Then
+  S-021, which must honour two constraints already recorded on it in the evolution map:
+  repoint the runner app to prod/ without a rebuild, and dev/bin/smoke.sh must exist first
+  (D-019). Then S-022, S-023. S-013 last, it is M3.
+constraints:
+  workspace: "AI Control Tower/.chats/evolutions, branch evolutions. git fetch origin and merge origin/main into evolutions before starting, the branch is behind main."
+  first: "delete permission requested and proven with a probe before any git, per the prompt"
+  output: "AI Control Tower/docs/stories/S-0NN-<slug>-design.md, one per story, State proposed"
+  shape: >
+    Each design names its criteria and their evidence in advance, cites the knowledge it
+    relies on, lists dependencies, and says which runs go through run-operations.sh per
+    D-017. Decisions go into the report at decision depth, one line each with a
+    recommendation. If Yassir answers one in the chat, record his pick in the design and
+    the report; the control room files the numbered decision.
+  no_touch: [prod/, dev/, "_tower shared files, see D-018", "paths claimed by another chat"]
+  stop_on: [shared_file_needed, delete_probe_failed]
+expect: >
+  One report for the order, updated after each design, and a close-out handover with the
+  claims file left empty. Commit after each design, never several designs in one commit.
+status: issued

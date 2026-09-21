@@ -54,8 +54,9 @@ the control room to tag, do not fix it.
 
 REPORT after every design: bus/reports/control-tower/evolutions/O-NNNN.report.yml in the
 shape of the design doc's report example, and a new file in _tower/bus/handover/ named
-<stamp>-evolutions-<slug>.md. Then release your claim. Never commit _tower, the control
-room does.
+<stamp>-evolutions-<slug>.md. Then release your claim. Before the session ends, write a
+close-out handover and leave your claims file empty: a closed chat holds nothing.
+Never commit _tower, the control room does.
 
 GIT NEEDS DELETE ACCESS, CHECK IT FIRST. git removes its own lock files after every
 operation, and this folder refuses deletes until a person approves them for your

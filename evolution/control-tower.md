@@ -49,7 +49,8 @@ Done:
       The HTML rendering of the same data is M1, with status.py
 
 ## Unscheduled [bugs], found in the control room's review of O-0001
-Neither blocks S-004. Not in a release until Yassir places them.
+Neither blocks S-004, so neither is in a release count. Dispatched to the Bugs chat in
+O-0003 on 2026-09-21, three-line design files proposed, awaiting Yassir's acceptance.
 - [ ] S-024 bug  [bugs] heartbeat.sh: if the second lock check, after a successful push,
       finds a lock and exits 8, it overwrites that run's handover with "SKIPPED", so a
       successful push is recorded as skipped. Rare, seconds-wide window. (O2)
@@ -115,9 +116,11 @@ every one is dispatched by the runner, run-operations.sh, per D-017.
 
 ## Work chats (D-018)
 - Control room, this project's standing chat: shared files, merges, dispatch, status.
-- Bugs, "AI Control Tower, Bugs": [bugs] stories, L1, clone .chats/bugs. Order O-0001.
+- Bugs, "AI Control Tower, Bugs": [bugs] stories, L1, clone .chats/bugs. O-0001 done
+  and merged. Current order O-0003, S-025 and S-024.
 - Evolutions, "AI Control Tower, Evolutions": [evolutions] stories, L2, design only
-  until S-004, clone .chats/evolutions. Order O-0002.
+  until S-004, clone .chats/evolutions. O-0002 delivered S-016's design. Current order
+  O-0004, S-018 onward.
 Prompts: _tower/docs/CHAT_PROMPT_BUGS.md and CHAT_PROMPT_EVOLUTIONS.md.
 
 If M0 fails, orders become numbered launchers Yassir starts before bed and nothing else

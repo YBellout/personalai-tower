@@ -1,0 +1,24 @@
+id: O-0003
+project: control-tower
+chat: bugs
+mode: build
+issued: 2026-09-21T14:40
+stories: [S-025, S-024]
+design_refs:
+  - "AI Control Tower/docs/stories/S-025-keep-last-error-design.md"
+  - "AI Control Tower/docs/stories/S-024-late-lock-handover-design.md"
+gates:
+  S-025: "the design file's State line reads accepted, on origin/main"
+  S-024: "the design file's State line reads accepted, on origin/main"
+order_of_work: "S-025 first: it decides what the control room sees during S-004's three days. S-024 second."
+constraints:
+  workspace: "AI Control Tower/.chats/bugs, branch bugs. git fetch origin and merge origin/main into bugs before starting, the branch is behind main."
+  first: "delete permission requested and proven with a probe before any git, per the prompt"
+  no_touch: [prod/, "_tower shared files, see D-018", "paths claimed by another chat"]
+  stop_on: [test_failure, gate_not_met, shared_file_needed, delete_probe_failed]
+  never: [push, merge into main, run anything on the Mac]
+expect: >
+  One report per story in bus/reports/control-tower/bugs/O-0003.report.yml, criteria each
+  closed on its named evidence, commit hash on branch bugs, "ready to merge", and a
+  close-out handover with the claims file left empty.
+status: issued
