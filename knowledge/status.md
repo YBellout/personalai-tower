@@ -24,6 +24,10 @@ Read fresh, in this order, and nothing else:
 4. `_tower/config.yml`, empty values that block something
 5. `git -C _tower log -1`, `git -C _tower status --porcelain`, `git -C _tower remote -v`
 6. `_tower/bus/events.log`, last lines, and `_tower/bus/heartbeat/last-success`
+7. `_tower/bus/heartbeat/alive`, its age, once the runner is installed (D-017, S-015):
+   older than 60 minutes turns the headline 🔴, whatever else is green. That is the
+   dead-man check, the only signal of a runner that is blocked or never started.
+   `_tower/bus/heartbeat/last-error`, if not empty, goes in Watch.
 
 If the hub cannot be reached, say so in one line and show the last `status.json` with
 its date. Never invent a state.

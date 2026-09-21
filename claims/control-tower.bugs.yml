@@ -1,0 +1,12 @@
+chat: bugs
+session: https://claude.ai/code/session_014NMbYb1C8Daycez9DrUbwo
+opened: 2026-09-21
+claims:
+  - story: S-014
+    paths: ["AI Control Tower/dev/bin/heartbeat.sh"]
+    since: 2026-09-21T11:50
+  - story: S-015
+    paths:
+      - "AI Control Tower/dev/bin/run-operations.sh"
+      - "AI Control Tower/launchers/install-runner.command"
+    since: 2026-09-21T12:10

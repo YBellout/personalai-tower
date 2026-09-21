@@ -1,0 +1,116 @@
+order: O-0001
+project: control-tower
+chat: bugs
+session: https://claude.ai/code/session_014NMbYb1C8Daycez9DrUbwo
+reported: 2026-09-21T08:12
+
+stories:
+
+  - story: S-014
+    status: "ready to merge"
+    branch: bugs
+    commit: 61e888b
+    design_ref: "AI Control Tower/docs/S-014-stale-lock-design.md"
+    criteria:
+      - id: C1
+        criterion: "A live lock with git running is left alone and the run is skipped"
+        status: closed
+        evidence: >
+          Scratch harness standing in for _tower (a fresh git repo, HEARTBEAT_ROOT-style
+          config, no production file touched): held .git/index.lock, started a process
+          named "git" holding it, ran heartbeat.sh --force. Exit 8, lock still present,
+          handover reads "SKIPPED: git busy" / "nothing removed, .git/index.lock present
+          while a git process is running".
+      - id: C2
+        criterion: "A stale lock with no git running is removed and the commit succeeds"
+        status: closed
+        evidence: >
+          Same harness: .git/index.lock backdated 10 minutes, no git process running.
+          --force exits 4 (push skipped, no remote in the harness, itself expected and
+          unrelated to the lock), lock removed, a new commit made, handover reads "RAN,
+          stale lock removed: .git/index.lock, 10 min old, committed <hash>".
+      - id: C3
+        criterion: "A young lock with no git running is left alone"
+        status: closed
+        evidence: >
+          Same harness: .git/index.lock just created, no git process running. --force
+          exits 8, lock still present, handover reads "SKIPPED: git busy" / "nothing
+          removed, .git/index.lock is younger than 5 minutes, another actor may be
+          mid-call".
+      - id: C4
+        criterion: "With no lock, behaviour is byte-identical to today"
+        status: closed
+        evidence: >
+          Same harness, no lock present: handover keeps the pre-S-014 shape (RAN,
+          committed <hash> / push result) because the added ${LOCK_NOTE:+, ...} expands
+          to nothing when no lock was found.
+    also_verified_beyond_the_table:
+      - "A numbered artifact such as \"index 2.lock\" is removed silently, noted in the
+         log only, never in the handover."
+      - "A lock under .git/refs/ is reported in the log and never removed."
+    requests: []
+
+  - story: S-015
+    status: "code ready to merge; C1, C2, C3, C5 open, need the real Mac"
+    branch: bugs
+    commit: bca67d3
+    design_ref: "AI Control Tower/docs/S-015-runner-design.md"
+    criteria:
+      - id: C1
+        criterion: "Started by launchd, the runner reads and writes the hub unattended"
+        status: open
+        reason: >
+          Needs PersonalAI Runner.app built and launchd pointed at it on the real Mac,
+          then two unattended wakes observed. This environment has no osacompile and no
+          launchd; nothing here can close it.
+      - id: C2
+        criterion: "The grant is narrow: Documents access, no Full Disk Access for bash"
+        status: open
+        reason: "Class user by design. Only Yassir can read System Settings, Privacy and Security."
+      - id: C3
+        criterion: "A blocked runner turns the status red within an hour"
+        status: open
+        reason: >
+          Needs a live install, a revoked grant, and a status regeneration, which the
+          Bugs chat never writes (D-018).
+      - id: C4
+        criterion: "Adding a job needs no rebuild and no new prompt"
+        status: closed
+        evidence: >
+          Scratch harness: run-operations.sh ran clean (heartbeat's own exit 4, no
+          GitHub remote in the harness, wrote nothing to stderr; last-error stayed
+          empty). Added a job that writes to stderr and exits 9: captured verbatim in
+          last-error with a timestamp. Then added a second, silent no-op job with one
+          more run_job line and no other change: ran clean on the next call, no new
+          entry, nothing else touched. This is the property the criterion names; no app
+          exists to rebuild outside the real Mac, so that half is untested here.
+      - id: C5
+        criterion: "The heartbeat's daily run succeeds through the runner"
+        status: open
+        reason: "Needs a real automatic (launchd) run distinguished from a manual one, on the real Mac."
+    requests: []
+    mac_steps_in_order:
+      - "1. Double-click launchers/install-runner.command."
+      - "2. It builds ~/Applications/PersonalAI Runner.app with osacompile."
+      - "3. It stops the current ai.personalai.heartbeat launchd agent and loads a new
+         one whose ProgramArguments run the app instead of bash directly."
+      - "4. It runs the app once in the foreground. macOS may ask up to two questions:
+         Documents access for the runner (Allow), then Keychain access for the GitHub
+         credential the push needs (Always Allow)."
+      - "5. It prints whether that run left anything in _tower/bus/heartbeat/last-error
+         and where the liveness file is."
+      - "6. Leave the Mac awake, untouched, for about an hour (two 30-minute wakes),
+         then check that _tower/bus/heartbeat/alive advanced twice. Closes C1."
+      - "7. Open System Settings, Privacy and Security, Files and Folders, and Full
+         Disk Access, and confirm the runner has Documents access and bash does not.
+         Closes C2."
+      - "8. Tell the control room once steps 1-7 are done. C3 (revoke the grant, watch
+         status turn red) and C5 (a Mac line in events.log from an automatic run) are
+         the control room's to verify against status and events.log, not this chat's,
+         since neither is a path this chat may write."
+
+open_items_for_control_room:
+  - "S-015 C1, C2, C3, C5 all need the real Mac and, for C1/C3/C5, real unattended time
+     after Yassir runs launchers/install-runner.command. This is a request to verify,
+     not a shared-file write, and needs no derogation: X-001 already covers
+     run-operations.sh."

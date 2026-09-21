@@ -1,0 +1,25 @@
+order: O-0002
+outcome: partial
+mode: design
+stories:
+  S-016: { result: design_proposed, commit: d3c69d4, file: "AI Control Tower/docs/stories/S-016-promote-rollback-design.md" }
+  S-018: { result: not_started }
+  S-019: { result: not_started }
+  S-020: { result: not_started }
+  S-017: { result: not_started }
+  S-021: { result: not_started }
+  S-022: { result: not_started }
+  S-023: { result: not_started }
+  S-013: { result: not_started, note: "M3, last per order_of_work" }
+files_touched: ["AI Control Tower/docs/stories/S-016-promote-rollback-design.md"]
+cost_usd: 0
+decided:
+  - "S-016: promote and rollback are Yassir-triggered, not dispatched by run-operations.sh; D-017 scopes the runner to unattended jobs only"
+  - "S-016: archive retention past five is treated as this rotation's own byproduct, not a self-governance delete, pending Yassir's read"
+needs:
+  - "S-016, D1: whether promote refuses outright when a project's registry declares no test suite (health.tests empty, true for control-tower today), or proceeds to the smoke check. Recommend: proceed, refuse would block every promote until a suite exists. See design file, Needs a decision, item 1."
+  - "S-016, D2: whether pruning the sixth-oldest prod/ archive snapshot needs a self-governance derogation. Recommend: no, it is the rotation's own byproduct, not project-file deletion. Item 2."
+  - "S-016, D3: control-tower has no health.smoke script yet either. Recommend: promote refuses with a named reason until one exists, which puts writing dev/bin/smoke.sh in front of S-021. Item 3."
+next: "Awaiting Yassir's picks on D1 to D3, then S-018 (status.py) per O-0002's order_of_work."
+notes:
+  - "git in this clone cannot unlink its own tmp/lock files yet (delete not granted in this connected folder); commits still succeed, noted so it isn't mistaken for a stale index.lock"

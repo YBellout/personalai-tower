@@ -1,43 +1,43 @@
 {
-  "generated_at": "2026-09-21T07:40:00-04:00",
+  "generated_at": "2026-09-21T08:25:00-04:00",
   "generated_by": "control room, session 011gf314me9VbMwtXMr9vTjp",
   "light": "amber",
-  "headline": "Both heartbeat designs accepted, X-001 widened. The Bugs chat can build S-014 and S-015 as soon as it is opened.",
+  "headline": "S-014 merged. S-015 merged and waiting for your one-time install on the Mac. Both work chats running.",
   "your_actions": [
     {
       "n": 1,
-      "do": "Open two new chats in this project, named AI Control Tower, Bugs and AI Control Tower, Evolutions, and paste each its prompt",
-      "who": "only you, only you can open a chat",
-      "where": "_tower/docs/CHAT_PROMPT_BUGS.md, CHAT_PROMPT_EVOLUTIONS.md",
-      "button": "link",
-      "minutes": 2
+      "do": "Double-click install-runner.command, click Allow when macOS asks about Documents, Always Allow for the Keychain, then leave the Mac awake and untouched for about an hour",
+      "who": "only you, two macOS grants",
+      "where": "AI Control Tower/launchers/install-runner.command",
+      "button": "launcher",
+      "minutes": 3
     },
     {
       "n": 2,
+      "do": "Then open System Settings, Privacy and Security: confirm the runner is under Files and Folders and bash is not under Full Disk Access, and tell me",
+      "who": "only you, it is your System Settings",
+      "where": "System Settings",
+      "button": "none",
+      "minutes": 1
+    },
+    {
+      "n": 3,
       "do": "GitHub: empty private repo personalai-tower, a token for it only, then connect-github",
       "who": "only you, the token is a secret",
       "where": "github.com/new, then AI Control Tower/launchers/connect-github.command",
       "button": "link",
       "minutes": 6
-    },
-    {
-      "n": 3,
-      "do": "Later, when the Bugs chat reports S-015 ready: double-click install-runner.command and click Allow twice",
-      "who": "only you, two macOS grants",
-      "where": "AI Control Tower/launchers",
-      "button": "launcher",
-      "minutes": 2
     }
   ],
   "claude_next": [
-    "Watch for the Bugs chat's reports, check each criterion's evidence, and merge into main",
-    "After the merge and your install, confirm two consecutive unattended wakes before calling S-015 done",
+    "After your install: confirm alive advanced on two unattended wakes, and a Mac line in events.log from an automatic run",
+    "Review the Evolutions chat's S-016 design when it reports",
     "After the first push: verify origin/main and privacy, then start S-004"
   ],
   "milestone": {
     "release": "v0.1.0",
     "name": "M0",
-    "stories_done": 8,
+    "stories_done": 9,
     "stories_total": 13,
     "exit_test": "3 consecutive days with the Mac on, each with a commit and a push",
     "exit_days_passed": 0,
@@ -47,14 +47,8 @@
     {
       "id": "S-015",
       "title": "Runner app, bug, Bugs chat",
-      "state": "not_started",
-      "note": "design accepted, X-001 widened, gates met, waiting for the Bugs chat to open"
-    },
-    {
-      "id": "S-014",
-      "title": "Stale lock, bug, Bugs chat",
-      "state": "not_started",
-      "note": "design accepted, gate met, waiting for the Bugs chat to open"
+      "state": "waiting_user",
+      "note": "merged ebe0c8d, C4 closed, C1 C2 C3 C5 need your install"
     },
     {
       "id": "S-002",
@@ -66,13 +60,19 @@
       "id": "S-003",
       "title": "Heartbeat",
       "state": "blocked",
-      "note": "launchd fires, macOS blocks every automatic run until S-015"
+      "note": "launchd fires, macOS blocks every run until the runner is installed"
     },
     {
       "id": "S-004",
       "title": "Three days unattended",
       "state": "blocked",
-      "note": "after the first push, S-014 and S-015"
+      "note": "after your install and the first push"
+    },
+    {
+      "id": "S-016",
+      "title": "promote and rollback design, Evolutions chat",
+      "state": "in_progress",
+      "note": "claimed 08:10, design being written"
     }
   ],
   "projects": [
@@ -116,7 +116,8 @@
     "installed": true,
     "last_run": "2026-09-20 13:05:15",
     "last_result": "21 automatic runs since 13:05, all exit 126, Operation not permitted",
-    "last_success_day": null
+    "last_success_day": null,
+    "alive": "no liveness file yet, the runner is not installed"
   },
   "sources": [
     "bus/handover, newest by mtime",
@@ -131,6 +132,8 @@
     "bus/reports/heartbeat-diagnostic-2026-09-20-234628.txt",
     "decisions/D-018.md",
     "bus/orders/control-tower/",
-    "claims/"
+    "claims/",
+    "bus/reports/control-tower/bugs/O-0001.report.yml",
+    "claims/control-tower.*.yml"
   ]
 }

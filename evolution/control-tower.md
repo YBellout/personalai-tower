@@ -5,27 +5,20 @@
 - O2 Two human steps per requirement: one pick and ten minutes
 - O3 Decided once here, dispatched everywhere, never re-decided per project
 
-## Release v0.1.0, M0, "R1". 13 stories, 8 done
+## Release v0.1.0, M0, "R1". 13 stories, 9 done
 Redefined 2026-09-20 on Yassir's validation, D-018: S-014 and S-015 pulled in, because
 M0 cannot pass without them. Exit test unchanged: three unattended days, each with a
 commit and a push. Tags: [bugs] and [evolutions] name the work chat that holds it.
 
 Open, in the order they unblock each other:
-- [ ] S-015 bug  [bugs] Unattended runs cannot enter ~/Documents. Diagnosed 2026-09-20 from
-      bus/reports/heartbeat-diagnostic-2026-09-20-234628.txt: launchd ran the heartbeat
-      22 times on schedule, every automatic run died before line 1, exit 126, macOS
-      privacy protection. Fix per D-017: one granted runner app as the single entry
-      point for every unattended job, plus a liveness file and a dead-man check in the
-      status. Design accepted by Yassir 2026-09-21, and X-001 widened by him to cover
-      run-operations.sh: both O-0001 gates met. "AI Control Tower/docs/S-015-runner-design.md".
-      Blocks S-004. (O2)
-- [ ] S-014 bug  [bugs] heartbeat.sh does not handle a stale .git/index.lock: an abandoned
-      lock (seen twice on 2026-09-20, once by the 18:20 session, once by the 21:30 one)
-      blocks its commit every 30 minutes until someone deletes the file by hand.
-      Remove a lock older than a few minutes with no git process holding it, and say
-      so in the report. Belongs before S-004 starts. (O2)  added 2026-09-20.
-      Design accepted by Yassir 2026-09-21, O-0001 gate met:
-      "AI Control Tower/docs/S-014-stale-lock-design.md".
+- [ ] S-015 bug  [bugs] The runner app, D-017: unattended jobs enter ~/Documents through one
+      granted app. Built by the Bugs chat, order O-0001, merged into main ebe0c8d on
+      2026-09-21. C4 closed, dispatcher rerun by the control room. C1, C2, C3, C5 open:
+      they need Yassir to run launchers/install-runner.command on the Mac, click Allow
+      twice, and leave the Mac untouched for about an hour. Blocks S-004. (O2)
+- [x] S-014 bug  [bugs] Stale git lock handling in heartbeat.sh. Built by the Bugs chat,
+      order O-0001, C1 to C4 closed. C2, C3 and C4 rerun independently by the control
+      room before merging. Merged into main ebe0c8d, 2026-09-21. (O2)
 - [ ] S-002 [control room] git init _tower, first commit, private GitHub remote  (O1) (est S)
       2026-09-20: init, .gitignore and first commit 497b217 done, C1 to C4, C7, C8 met.
       Handle YBellout recorded, origin set to personalai-tower. C5 and C6 still open:
@@ -55,6 +48,15 @@ Done:
       side doc regenerated under the fixed layout  (O2)  2026-09-20
       The HTML rendering of the same data is M1, with status.py
 
+## Unscheduled [bugs], found in the control room's review of O-0001
+Neither blocks S-004. Not in a release until Yassir places them.
+- [ ] S-024 bug  [bugs] heartbeat.sh: if the second lock check, after a successful push,
+      finds a lock and exits 8, it overwrites that run's handover with "SKIPPED", so a
+      successful push is recorded as skipped. Rare, seconds-wide window. (O2)
+- [ ] S-025 bug  [bugs] run-operations.sh empties last-error on every wake, so an error
+      survives only until the next clean run, 30 minutes, and can vanish unseen between
+      two status reads. Keep the last non-empty error with its time instead. (O2)
+
 ## Next release v0.2.0, M1. 8 stories, all feature, all [evolutions]
 Starts building only when S-004 passes. Designs are written now, under order O-0002.
 Exit test, D-013: the Tower itself. Break heartbeat.sh in dev and watch promote refuse,
@@ -73,7 +75,10 @@ and it also closes X-001.
 - [ ] S-020 feature  [evolutions]  mirror.sh, incremental sha256 mirror to the D-003
       target. Needs Yassir's answer on the external drive.
 - [ ] S-021 feature  [evolutions]  promote heartbeat.sh and run-operations.sh from dev/
-      to prod/ with promote.sh. M1's exit test, closes X-001.
+      to prod/ with promote.sh. M1's exit test, closes X-001. Constraint found in
+      review 2026-09-21: the runner app has the dev/ dispatcher path built into it, and
+      rebuilding the app loses its macOS grant (S-015, U3). The design must repoint the
+      app to prod/ without a rebuild, for example through one stable indirection file.
 - [ ] S-022 feature  [evolutions]  adopt platform-architecture, adoption steps 1 to 8,
       the docs-only rehearsal of the pipeline. First project adopted after the Tower.
 - [ ] S-023 feature  [evolutions]  private remote for the "AI Control Tower" repo,
