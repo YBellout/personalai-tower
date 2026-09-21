@@ -16,14 +16,15 @@ Open, in the order they unblock each other:
       22 times on schedule, every automatic run died before line 1, exit 126, macOS
       privacy protection. Fix per D-017: one granted runner app as the single entry
       point for every unattended job, plus a liveness file and a dead-man check in the
-      status. Design proposed 2026-09-20 23:55, awaiting Yassir:
-      "AI Control Tower/docs/S-015-runner-design.md". Blocks S-004. (O2)
+      status. Design accepted by Yassir 2026-09-21, and X-001 widened by him to cover
+      run-operations.sh: both O-0001 gates met. "AI Control Tower/docs/S-015-runner-design.md".
+      Blocks S-004. (O2)
 - [ ] S-014 bug  [bugs] heartbeat.sh does not handle a stale .git/index.lock: an abandoned
       lock (seen twice on 2026-09-20, once by the 18:20 session, once by the 21:30 one)
       blocks its commit every 30 minutes until someone deletes the file by hand.
       Remove a lock older than a few minutes with no git process holding it, and say
       so in the report. Belongs before S-004 starts. (O2)  added 2026-09-20.
-      Design file proposed 2026-09-20 21:55, awaiting Yassir:
+      Design accepted by Yassir 2026-09-21, O-0001 gate met:
       "AI Control Tower/docs/S-014-stale-lock-design.md".
 - [ ] S-002 [control room] git init _tower, first commit, private GitHub remote  (O1) (est S)
       2026-09-20: init, .gitignore and first commit 497b217 done, C1 to C4, C7, C8 met.
@@ -119,7 +120,8 @@ in the design changes.
   behind Cloudflare Access. Not a date.
 
 Derogations live in decisions/derogations.yml, not here. Two are live, both granted by
-Yassir on 2026-09-20. X-001, the heartbeat runs from dev/, closes when M1's promote.sh
+Yassir on 2026-09-20. X-001, the heartbeat and since 2026-09-21 run-operations.sh run
+from dev/, widened by Yassir, closes when M1's promote.sh
 promotes it, which D-013 makes the same event as M1's exit test. X-002, the dev UI built
 past the M0 hold, closes when S-004 passes.
 

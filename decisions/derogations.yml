@@ -22,12 +22,18 @@ derogations:
     granted_by: Yassir
     granted_on: 2026-09-20
     expires_on: ""
-    trigger: "M1 delivers bin/promote.sh. The heartbeat is then promoted and this closes."
+    trigger: "M1 delivers bin/promote.sh. heartbeat.sh and run-operations.sh are then promoted, S-021, and this closes."
     state: granted
+    covers:                      # the only files allowed to run from dev/, named explicitly
+      - "AI Control Tower/dev/bin/heartbeat.sh"
+      - "AI Control Tower/dev/bin/run-operations.sh"
+    widened_by: Yassir           # run-operations.sh added, the runner's dispatcher, S-015, D-017
+    widened_on: 2026-09-21
     compensating_control: >
-      The heartbeat is the only file covered, named explicitly, and it writes a
-      handover entry on every run, so a silent failure is visible the next morning
-      rather than three weeks later.
+      Two files covered, named explicitly above, and nothing else. The heartbeat writes a
+      handover entry on every run, and once S-015 ships the runner overwrites a liveness
+      file every wake, so a silent failure turns the status red within the hour rather
+      than being found weeks later.
     breaks_if_denied: >
       M0 cannot run. The alternative is building promote.sh first, which makes M0
       a multi-day milestone instead of a half-day one and proves the risky thing

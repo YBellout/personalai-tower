@@ -1,19 +1,11 @@
 {
-  "generated_at": "2026-09-21T00:45:00-04:00",
+  "generated_at": "2026-09-21T07:40:00-04:00",
   "generated_by": "control room, session 011gf314me9VbMwtXMr9vTjp",
   "light": "amber",
-  "headline": "R1 redefined to 13 stories, 8 done. Two work chats ready to open, Bugs and Evolutions. Heartbeat fix designed, waiting on your acceptance.",
+  "headline": "Both heartbeat designs accepted, X-001 widened. The Bugs chat can build S-014 and S-015 as soon as it is opened.",
   "your_actions": [
     {
       "n": 1,
-      "do": "Accept the S-015 runner design and say whether X-001 may widen to run-operations.sh, then accept S-014. This opens the Bugs chat's gates",
-      "who": "only you, acceptance and derogations are yours",
-      "where": "AI Control Tower/docs/S-015-runner-design.md, S-014-stale-lock-design.md",
-      "button": "link",
-      "minutes": 8
-    },
-    {
-      "n": 2,
       "do": "Open two new chats in this project, named AI Control Tower, Bugs and AI Control Tower, Evolutions, and paste each its prompt",
       "who": "only you, only you can open a chat",
       "where": "_tower/docs/CHAT_PROMPT_BUGS.md, CHAT_PROMPT_EVOLUTIONS.md",
@@ -21,17 +13,25 @@
       "minutes": 2
     },
     {
-      "n": 3,
+      "n": 2,
       "do": "GitHub: empty private repo personalai-tower, a token for it only, then connect-github",
       "who": "only you, the token is a secret",
       "where": "github.com/new, then AI Control Tower/launchers/connect-github.command",
       "button": "link",
       "minutes": 6
+    },
+    {
+      "n": 3,
+      "do": "Later, when the Bugs chat reports S-015 ready: double-click install-runner.command and click Allow twice",
+      "who": "only you, two macOS grants",
+      "where": "AI Control Tower/launchers",
+      "button": "launcher",
+      "minutes": 2
     }
   ],
   "claude_next": [
-    "Record your acceptances on main so the Bugs chat's gates open",
-    "Merge each work chat's branch into main when its report says ready, after checking its evidence",
+    "Watch for the Bugs chat's reports, check each criterion's evidence, and merge into main",
+    "After the merge and your install, confirm two consecutive unattended wakes before calling S-015 done",
     "After the first push: verify origin/main and privacy, then start S-004"
   ],
   "milestone": {
@@ -47,14 +47,14 @@
     {
       "id": "S-015",
       "title": "Runner app, bug, Bugs chat",
-      "state": "waiting_user",
-      "note": "design proposed, awaiting acceptance and X-001 widening"
+      "state": "not_started",
+      "note": "design accepted, X-001 widened, gates met, waiting for the Bugs chat to open"
     },
     {
       "id": "S-014",
       "title": "Stale lock, bug, Bugs chat",
-      "state": "waiting_user",
-      "note": "design proposed, awaiting acceptance"
+      "state": "not_started",
+      "note": "design accepted, gate met, waiting for the Bugs chat to open"
     },
     {
       "id": "S-002",
