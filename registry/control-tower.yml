@@ -52,6 +52,25 @@ control_room:
   refresh_after_days: 30
   last_folded: "2026-09-20"   # this session's work folded into docs/HANDOVER.md and committed
 
+work_chats:                 # D-018. Each chat records its session in its own claims
+                            # file, never here. The control room is the only writer here.
+  bugs:
+    name: "AI Control Tower, Bugs"
+    stream: "Evolutions, tag bug"
+    autonomy: L1
+    workspace: "AI Control Tower/.chats/bugs"
+    branch: bugs
+    prompt: _tower/docs/CHAT_PROMPT_BUGS.md
+    claims: _tower/claims/control-tower.bugs.yml
+  evolutions:
+    name: "AI Control Tower, Evolutions"
+    stream: "Evolutions, tag feature"
+    autonomy: L2
+    workspace: "AI Control Tower/.chats/evolutions"
+    branch: evolutions
+    prompt: _tower/docs/CHAT_PROMPT_EVOLUTIONS.md
+    claims: _tower/claims/control-tower.evolutions.yml
+
 self_governance:
   rule: "bound by every rule it enforces on the projects it governs"
   policy: _tower/policy/self-governance.md

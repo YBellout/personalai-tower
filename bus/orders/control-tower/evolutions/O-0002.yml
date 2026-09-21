@@ -1,0 +1,26 @@
+id: O-0002
+project: control-tower
+chat: evolutions
+mode: design
+issued: 2026-09-21T00:30
+stories: [S-016, S-017, S-018, S-019, S-020, S-021, S-022, S-023, S-013]
+design_refs: []              # this order produces them
+gates:
+  all: "M0 hold: design files and documents only, no build, until S-004 passes"
+order_of_work: >
+  S-016 promote and rollback first, everything in M1 leans on it. Then S-018 status.py,
+  which absorbs S-015's dead-man check. Then S-019 audit, S-020 mirror, S-017 brief,
+  S-021, S-022, S-023. S-013 last, it is M3.
+constraints:
+  workspace: "AI Control Tower/.chats/evolutions, branch evolutions"
+  output: "AI Control Tower/docs/stories/S-0NN-<slug>-design.md, one per story, state proposed"
+  shape: >
+    Each design names its acceptance criteria and the evidence for each in advance, cites
+    the knowledge it relies on, lists its dependencies, and says which runs go through the
+    runner's dispatcher, run-operations.sh, per D-017.
+  no_touch: [prod/, dev/, "_tower shared files, see D-018", "paths claimed by another chat"]
+  stop_on: [shared_file_needed, decision_needed]
+expect: >
+  One report per design in bus/reports/control-tower/evolutions/, listing any decision
+  the design needs from Yassir at decision depth, one line each with a recommendation.
+status: issued

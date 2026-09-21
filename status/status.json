@@ -1,86 +1,78 @@
 {
-  "generated_at": "2026-09-20T23:58:00-04:00",
+  "generated_at": "2026-09-21T00:45:00-04:00",
   "generated_by": "control room, session 011gf314me9VbMwtXMr9vTjp",
   "light": "amber",
-  "headline": "Heartbeat diagnosed: launchd fires every 30 minutes, macOS blocks it from ~/Documents. Fix designed, awaiting your acceptance.",
+  "headline": "R1 redefined to 13 stories, 8 done. Two work chats ready to open, Bugs and Evolutions. Heartbeat fix designed, waiting on your acceptance.",
   "your_actions": [
     {
       "n": 1,
-      "do": "Read and accept the S-015 runner design, and say whether X-001 may widen to the dispatcher",
-      "who": "only you, acceptance and the derogation are yours",
-      "where": "AI Control Tower/docs/S-015-runner-design.md",
+      "do": "Accept the S-015 runner design and say whether X-001 may widen to run-operations.sh, then accept S-014. This opens the Bugs chat's gates",
+      "who": "only you, acceptance and derogations are yours",
+      "where": "AI Control Tower/docs/S-015-runner-design.md, S-014-stale-lock-design.md",
       "button": "link",
-      "minutes": 5
+      "minutes": 8
     },
     {
       "n": 2,
-      "do": "Read and accept the S-014 stale-lock design",
-      "who": "only you",
-      "where": "AI Control Tower/docs/S-014-stale-lock-design.md",
+      "do": "Open two new chats in this project, named AI Control Tower, Bugs and AI Control Tower, Evolutions, and paste each its prompt",
+      "who": "only you, only you can open a chat",
+      "where": "_tower/docs/CHAT_PROMPT_BUGS.md, CHAT_PROMPT_EVOLUTIONS.md",
       "button": "link",
-      "minutes": 3
+      "minutes": 2
     },
     {
       "n": 3,
-      "do": "Create the empty private repo personalai-tower, then a token for that repo only, Contents read and write",
-      "who": "shared, the token stays yours",
-      "where": "github.com/new, then github.com/settings/personal-access-tokens/new",
+      "do": "GitHub: empty private repo personalai-tower, a token for it only, then connect-github",
+      "who": "only you, the token is a secret",
+      "where": "github.com/new, then AI Control Tower/launchers/connect-github.command",
       "button": "link",
-      "minutes": 4
-    },
-    {
-      "n": 4,
-      "do": "Double-click connect-github and paste the token",
-      "who": "only you, it is a secret",
-      "where": "AI Control Tower/launchers/connect-github.command",
-      "button": "launcher",
-      "minutes": 1
+      "minutes": 6
     }
   ],
   "claude_next": [
-    "On acceptance, build the runner, the dispatcher and install-runner.command, and the S-014 lock fix, in one pass",
-    "Prove C1 on two consecutive unattended wakes before calling S-015 done",
-    "After the first push, verify origin/main and privacy, then start S-004"
+    "Record your acceptances on main so the Bugs chat's gates open",
+    "Merge each work chat's branch into main when its report says ready, after checking its evidence",
+    "After the first push: verify origin/main and privacy, then start S-004"
   ],
   "milestone": {
     "release": "v0.1.0",
     "name": "M0",
     "stories_done": 8,
-    "stories_total": 11,
+    "stories_total": 13,
     "exit_test": "3 consecutive days with the Mac on, each with a commit and a push",
     "exit_days_passed": 0,
     "exit_days_needed": 3
   },
   "stories": [
     {
+      "id": "S-015",
+      "title": "Runner app, bug, Bugs chat",
+      "state": "waiting_user",
+      "note": "design proposed, awaiting acceptance and X-001 widening"
+    },
+    {
+      "id": "S-014",
+      "title": "Stale lock, bug, Bugs chat",
+      "state": "waiting_user",
+      "note": "design proposed, awaiting acceptance"
+    },
+    {
       "id": "S-002",
       "title": "git and private GitHub remote",
       "state": "waiting_user",
-      "note": "local repo done, origin set, no push has ever succeeded"
+      "note": "no push has ever succeeded"
     },
     {
       "id": "S-003",
       "title": "Heartbeat",
       "state": "blocked",
-      "note": "launchd fires on schedule, 22 runs, every automatic run blocked by macOS privacy protection"
+      "note": "launchd fires, macOS blocks every automatic run until S-015"
     },
     {
       "id": "S-004",
       "title": "Three days unattended",
       "state": "blocked",
       "note": "after the first push, S-014 and S-015"
-    },
-    {
-      "id": "S-014",
-      "title": "Heartbeat stale-lock fix, bug",
-      "state": "waiting_user",
-      "note": "design proposed, awaiting acceptance"
-    },
-    {
-      "id": "S-015",
-      "title": "Runner app, unattended access to the hub, bug",
-      "state": "waiting_user",
-      "note": "design proposed per D-017, awaiting acceptance"
     }
   ],
   "projects": [
@@ -117,7 +109,7 @@
   ],
   "watch": [
     "No offsite copy of anything exists: no push has ever succeeded",
-    "Until S-015 ships, a blocked run is visible only by running the diagnostic",
+    "Three chats will now work the hub. Claims and the control-room merge are the only guard until the M1 audit",
     "D-003: no external drive confirmed, the mirror falls back to the internal disk"
   ],
   "heartbeat": {
@@ -136,6 +128,9 @@
     "bus/events.log",
     "bus/heartbeat/",
     "dev/bin/heartbeat.sh read line by line",
-    "bus/reports/heartbeat-diagnostic-2026-09-20-234628.txt"
+    "bus/reports/heartbeat-diagnostic-2026-09-20-234628.txt",
+    "decisions/D-018.md",
+    "bus/orders/control-tower/",
+    "claims/"
   ]
 }

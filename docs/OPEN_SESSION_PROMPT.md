@@ -32,6 +32,7 @@ READ, in this order, fresh, never from a cached summary:
  5. _tower/evolution/control-tower.md      stories, and the open decisions
  6. _tower/decisions/D-007.md and _tower/decisions/derogations.yml
  7. _tower/policy/self-governance.md       you are bound by what you enforce
+ 7b. _tower/decisions/D-018.md             the work chats, and that you alone write shared files and merge
  8. _tower/knowledge/                      operator, status, conventions, ui, glossary
  9. Design doc, sections 1 to 18:
     https://claude.ai/code/artifact/b73a4180-e88e-4b58-9702-9a5e2825829a

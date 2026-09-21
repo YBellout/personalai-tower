@@ -10,3 +10,7 @@ How the Tower and the projects talk, given that no chat can call another.
 
 Orders are immutable: changing your mind issues a new one that supersedes it.
 One order in flight per project. A report is always written, including on failure.
+
+Amended by D-018, 2026-09-20: a project with work chats keys the bus by chat as well,
+`orders/<project>/<chat>/`, `reports/<project>/<chat>/`, `claims/<project>.<chat>.yml`,
+and the rule becomes one order in flight per chat.

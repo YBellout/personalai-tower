@@ -1,0 +1,23 @@
+id: O-0001
+project: control-tower
+chat: bugs
+mode: build
+issued: 2026-09-21T00:30
+stories: [S-014, S-015]
+design_refs:
+  - "AI Control Tower/docs/S-014-stale-lock-design.md"
+  - "AI Control Tower/docs/S-015-runner-design.md"
+gates:                       # checked by the chat before each story, never assumed
+  S-014: "the design file's State line reads accepted"
+  S-015: "the design file's State line reads accepted, AND derogations.yml shows X-001 widened to run-operations.sh, granted by Yassir"
+order_of_work: "S-014 first, it is small and independent. S-015 second."
+constraints:
+  workspace: "AI Control Tower/.chats/bugs, branch bugs"
+  no_touch: [prod/, "_tower shared files, see D-018", "paths claimed by another chat"]
+  stop_on: [test_failure, gate_not_met, shared_file_needed]
+  never: [push, merge into main, run the installer on the Mac]
+expect: >
+  One report per story in bus/reports/control-tower/bugs/, criteria C1..Cn each closed
+  on its named evidence, commit hash on branch bugs, and "ready to merge". For S-015 the
+  report also names every step that only Yassir can do on the Mac, in order.
+status: issued
