@@ -45,9 +45,9 @@ autonomy:
   budget_usd_month: 15
 
 control_room:
-  chat: "https://claude.ai/code/session_011gf314me9VbMwtXMr9vTjp"   # re-claimed 2026-09-20
-                            # after the handoff, because Yassir carried on in this chat.
-                            # Released again at close. Empty means no chat holds the hub.
+  chat: "https://claude.ai/code/session_011gf314me9VbMwtXMr9vTjp"   # claimed via
+                            # OPEN_SESSION_PROMPT.md, 2026-09-20 21:55. Released at close.
+                            # Empty means no chat holds the hub and nothing should write.
   opened: 2026-09-20
   refresh_after_days: 30
   last_folded: "2026-09-20"   # this session's work folded into docs/HANDOVER.md and committed
@@ -58,7 +58,7 @@ self_governance:
   derogations: _tower/decisions/derogations.yml
   escalates_to: Yassir        # the Tower has nothing above it
   audit_order: first          # the nightly audit reports the Tower's own conformance first
-  open_derogations: [X-001]   # granted by Yassir 2026-09-20, open until M1 promotes the heartbeat
+  open_derogations: [X-001, X-002]   # both granted by Yassir 2026-09-20
 
 links:
   evolution: _tower/evolution/control-tower.md

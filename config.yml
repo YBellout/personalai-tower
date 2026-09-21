@@ -12,8 +12,10 @@ tower_code_dev: AI Control Tower/dev
 mirror:
   targets:
     - name: local
-      path: ""            # TO SET: a second local destination, outside the root
-      enabled: false
+      path: "~/PersonalAI-mirror"   # D-003. Fallback. Replaced by the external drive's
+                          # path if Yassir has one, which is still to be confirmed.
+      enabled: true       # enabled per D-003, but mirror.sh does not exist until M1:
+                          # NOTHING IS BEING MIRRORED TODAY. Do not read this as backup.
     - name: offsite
       kind: object-store
       enabled: false      # decided later, interface written so this is a flag
@@ -33,7 +35,9 @@ git:
 residency:
   rule: every governed project lives entirely under root, on local disk
   never: [iCloud Drive, any cloud-synced folder]
-  scan_for_strays: ["~/Desktop", "~/Documents", "~/Downloads", "~/Developer"]
+  scan_for_strays: ["~/Desktop", "~/Documents", "~/Downloads"]   # D-006. ~/Developer
+                          # dropped, it does not exist. Grants are requested when
+                          # the scan first runs, at M1: grants do not outlive a session.
 
 permissions:
   posture: allow-audit    # nightly audit reports, nothing blocked

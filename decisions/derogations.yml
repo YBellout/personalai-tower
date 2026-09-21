@@ -33,6 +33,32 @@ derogations:
       a multi-day milestone instead of a half-day one and proves the risky thing
       last instead of first.
 
+  - id: X-002
+    scope: control-tower
+    rule: "The M0 hold: build no UI until M0 has passed its exit test, three unattended nights."
+    reason: >
+      Yassir asked for the status dashboard as a local web page before M0 passed, and
+      said so when the conflict with the hold was put to him. S-012 built the Flask
+      server basis in "AI Control Tower/dev/ui" on that answer. Recorded after the
+      fact, on the 21:55 read, because until now the hub carried it as an
+      unrecorded breach.
+    proposed_by: claude
+    proposed_on: 2026-09-20
+    granted_by: Yassir
+    granted_on: 2026-09-20
+    expires_on: ""
+    trigger: "S-004 passes. The hold lifts and the UI is then in scope by design."
+    state: granted
+    compensating_control: >
+      The UI is read-only: it renders status/status.json and changes nothing on disk.
+      It is dev-only scaffolding outside the M0 story count and does not touch the
+      exit test. Covered: "AI Control Tower/dev/ui" and launchers/start-ui.command,
+      nothing else. S-013 is NOT covered and waits for the hold to lift or for its
+      own derogation.
+    breaks_if_denied: >
+      The UI would have to be removed to _to_delete/ until S-004 passes, and the
+      status would go back to the side doc only.
+
 # Not derogations, recorded here so they are not mistaken for breaches:
 #   - The Tower has no frozen adoption copy (step zero of the adopt pipeline).
 #     Not applicable: it was created empty on 2026-09-20, there is nothing to

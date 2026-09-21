@@ -10,12 +10,14 @@
       Confirmed by Yassir, recorded in config.yml as root_confirmed_by/on
 - [ ] S-002 git init _tower, first commit, private GitHub remote  (O1) (est S)
       2026-09-20: init, .gitignore and first commit 497b217 done, C1 to C4, C7, C8 met.
-      C5 and C6 blocked by D-002: Yassir has no GitHub account set up on this Mac yet,
-      he has to create one or look his up
+      Handle YBellout recorded, origin set to personalai-tower. C5 and C6 still open:
+      no push has ever succeeded, no origin/main. Waiting on Yassir's repo, token and
+      connect-github.command. A push cannot be tested from the Claude VM, osxkeychain.
 - [ ] S-003 Heartbeat scheduled task: wake, read, append an event, commit, push,
       write a handover  (O2) (est M)
-      X-001 granted 2026-09-20. S-003a design file written 2026-09-20, awaiting
-      Yassir's acceptance: "AI Control Tower/docs/S-003-heartbeat-design.md"
+      X-001 granted. S-003a accepted 2026-09-20, launchd agent every 30 minutes.
+      S-003b built and installed. One Mac run, 13:05:15. NOT PROVEN TO WAKE BY ITSELF:
+      zero automatic runs since, checked 21:55. S-014 must land before S-004.
 - [ ] S-004 Run it three nights unattended, nobody touching the Mac  (O2) (est S)
 - [x] S-005 Per-project link prompt, docs/PROJECT_LINK_PROMPT.md  (O3)  2026-09-20
 - [x] S-006 Self-governance clause and derogation register  (O3)  2026-09-20
@@ -39,8 +41,9 @@
       AI Control Tower/docs/S-012-ui-server-design.md, accepted same day via the
       control room's interactive intake. Smoke-tested against the live status.json
       (index and /api/status both render). Launcher: launchers/start-ui.command.
-      "AI Control Tower" has no git repo of its own yet (S-002 note: _tower first),
-      so this is not yet committed anywhere.
+      Out of conformance with the M0 hold on Yassir's answer, recorded as X-002 on
+      2026-09-20, closing when S-004 passes. Committed in the "AI Control Tower" repo,
+      919315b, which did not exist before 2026-09-20 21:55.
 
 ## Evolutions, backlog (D-016)
 Bug fixes and feature evolutions from stories. Each one tagged. Not in the M0 count,
@@ -56,6 +59,16 @@ not before S-004 unless Yassir pulls one forward, as he did S-012.
       blocks its commit every 30 minutes until someone deletes the file by hand.
       Remove a lock older than a few minutes with no git process holding it, and say
       so in the report. Belongs before S-004 starts. (O2)  added 2026-09-20.
+      Design file proposed 2026-09-20 21:55, awaiting Yassir:
+      "AI Control Tower/docs/S-014-stale-lock-design.md".
+- [ ] S-015 bug      Heartbeat failures before the hub is readable leave no trace in the
+      hub. heartbeat.sh exits "HUB MISSING" at lines 12, 15 and 21 and logs only to
+      ~/Library/Logs, so an agent that fires and is denied ~/Documents looks, from the
+      control room, identical to one that never fires. Likeliest cause of today's
+      silence. Fix direction: a tiny wrapper app as the only thing granted Documents
+      access, rather than Full Disk Access for /bin/bash, which would grant it to every
+      bash script on the Mac. Confirm with check-heartbeat.command first. (O2)
+      added 2026-09-20.
 
 ## Operations (D-016)
 Runs the Tower owns. Unchanged code, evidence in bus/.
@@ -71,32 +84,23 @@ S-005 to S-008 and S-010 are documents. They change nothing on disk outside _tow
 project and move no file, so they are inside the hold that M0 imposes.
 
 ## Open decisions
-- D-002 GitHub account for the private remotes. Shape answered 2026-09-20: an
-  existing personal account of Yassir's, private repos, credential in Keychain as
-  personalai.github. The handle itself is still missing, so config.yml git.account
-  is empty and S-002's push is blocked, along with step 5 of adoption for every
-  project. Closes when the handle is filled in and the first push succeeds.
-- D-003 Local mirror destination. Blocks the first backup run, and step 3 of the
-  adoption pipeline, the frozen copy, for every project. Not an M0 blocker.
-  Recommendation on the table: an external drive if one exists, otherwise
-  ~/PersonalAI-mirror on the internal disk, enabled rather than written and disabled.
 - D-004 Ratchet permissions to deny-by-default. Trigger: the Mac mini goes live
   behind Cloudflare Access. Not a date.
-- D-006 Folder grants for the stray scan. config.yml names ~/Desktop, ~/Documents,
-  ~/Downloads and ~/Developer. The Tower has a grant to none of them, so residency
-  is unverifiable for every project not already under the root. Not an M0 blocker.
-  Finding 2026-09-20: ~/Developer does not exist on this Mac, so the grant is over
-  three locations and that fourth line should be dropped from config.yml.
-- D-013 M1's exit test. Raised by D-005. The test as written assumes a project with
-  code, and D-012 puts a docs-only project second. Either M1 keeps a code project as
-  the subject of its exit test, or the test is rewritten. An M1 question, not an M0
-  one.
 
-Derogations live in decisions/derogations.yml, not here. X-001 was granted by Yassir
-on 2026-09-20 and no longer blocks S-003. Its closing trigger stands: M1 delivers
-bin/promote.sh, the heartbeat is promoted, the derogation closes.
+Derogations live in decisions/derogations.yml, not here. Two are live, both granted by
+Yassir on 2026-09-20. X-001, the heartbeat runs from dev/, closes when M1's promote.sh
+promotes it, which D-013 makes the same event as M1's exit test. X-002, the dev UI built
+past the M0 hold, closes when S-004 passes.
 
 ## Accepted decisions
+- D-013 M1's exit test runs against the Tower itself. Promoting heartbeat.sh through
+  promote.sh is also what closes X-001, so the two are one event. Platform Architecture
+  runs alongside as the docs-only rehearsal. Answered 2026-09-20. decisions/D-013.md.
+- D-006 Stray-scan grants over ~/Desktop, ~/Documents, ~/Downloads, requested when the
+  scan first runs at M1. ~/Developer dropped, it does not exist. Answered 2026-09-20.
+- D-003 Local mirror: an external drive if one exists, otherwise ~/PersonalAI-mirror.
+  Answered 2026-09-20, one fact outstanding, whether the drive exists. Nothing is
+  mirrored until mirror.sh at M1.
 - D-016 Two work streams, Operations (batch and execution runs) and Evolutions (bug
   fixes plus feature evolutions from stories), for the Tower and every governed
   project. Scope global, answered 2026-09-20. decisions/D-016.md. Applied to this map
