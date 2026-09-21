@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-20T21:58:00-04:00",
+  "generated_at": "2026-09-20T22:20:00-04:00",
   "generated_by": "control room, session 011gf314me9VbMwtXMr9vTjp",
   "light": "amber",
   "headline": "M0 at 8 of 11, exit test 0 of 3. The heartbeat has not reached the hub by itself since 13:05, and nothing has ever been pushed.",
@@ -118,7 +118,7 @@
   "watch": [
     "No offsite copy of anything exists: no push has ever succeeded",
     "Heartbeat failures before the hub is readable are invisible from here, S-015",
-    "Confirm iCloud's Desktop and Documents sync is off: the hub lives in ~/Documents and must never be in iCloud"
+    "D-003: no external drive confirmed, so the mirror falls back to the internal disk, which does not survive a disk failure"
   ],
   "heartbeat": {
     "installed": true,

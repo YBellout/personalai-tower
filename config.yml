@@ -35,6 +35,10 @@ git:
 residency:
   rule: every governed project lives entirely under root, on local disk
   never: [iCloud Drive, any cloud-synced folder]
+  icloud_desktop_documents: off   # checked by Yassir in System Settings, 2026-09-20
+                          # 22:20. The hub lives in ~/Documents, so this is the line
+                          # the first residency rule rests on. Re-check after any
+                          # macOS upgrade or new Apple ID sign-in, which can re-enable it.
   scan_for_strays: ["~/Desktop", "~/Documents", "~/Downloads"]   # D-006. ~/Developer
                           # dropped, it does not exist. Grants are requested when
                           # the scan first runs, at M1: grants do not outlive a session.
