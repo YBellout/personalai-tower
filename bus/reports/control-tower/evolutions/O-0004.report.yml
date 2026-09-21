@@ -1,0 +1,67 @@
+order: O-0004
+outcome: complete
+mode: design
+stories:
+  S-018: { result: design_proposed, commit: ec3eee3, file: "AI Control Tower/docs/stories/S-018-status-py-design.md" }
+  S-019: { result: design_proposed, commit: 0996eba, file: "AI Control Tower/docs/stories/S-019-audit-py-design.md" }
+  S-020: { result: design_proposed, commit: 382607f, file: "AI Control Tower/docs/stories/S-020-mirror-sh-design.md" }
+  S-017: { result: design_proposed, commit: e02764e, file: "AI Control Tower/docs/stories/S-017-brief-sh-design.md" }
+  S-021: { result: design_proposed, commit: e16b3e4, file: "AI Control Tower/docs/stories/S-021-promote-heartbeat-design.md" }
+  S-022: { result: design_proposed, commit: da9d193, file: "AI Control Tower/docs/stories/S-022-adopt-platform-architecture-design.md" }
+  S-023: { result: design_proposed, commit: 60df09f, file: "AI Control Tower/docs/stories/S-023-private-remote-design.md" }
+  S-013: { result: design_proposed, commit: b7c584f, file: "AI Control Tower/docs/stories/S-013-raw-note-intake-ui.md" }
+files_touched:
+  - "AI Control Tower/docs/stories/S-018-status-py-design.md"
+  - "AI Control Tower/docs/stories/S-019-audit-py-design.md"
+  - "AI Control Tower/docs/stories/S-020-mirror-sh-design.md"
+  - "AI Control Tower/docs/stories/S-017-brief-sh-design.md"
+  - "AI Control Tower/docs/stories/S-021-promote-heartbeat-design.md"
+  - "AI Control Tower/docs/stories/S-022-adopt-platform-architecture-design.md"
+  - "AI Control Tower/docs/stories/S-023-private-remote-design.md"
+  - "AI Control Tower/docs/stories/S-013-raw-note-intake-ui.md"
+cost_usd: 0
+decided: []
+needs:
+  - "S-018: status.json's four narrative fields (headline, your_actions, claude_next, watch) stay hand-authored by the calling chat; status.py only computes the mechanical fields and a light floor it may never be lowered below. Recommend: accept."
+  - "S-018: a day with no successful push resets the M0 exit-test's consecutive-day count to zero. Recommend: accept."
+  - "S-019: every governed project files its pasted custom-instructions block on disk at docs/PROJECT_INSTRUCTIONS.md, the only way D-007 and D-014 have anything to audit. Recommend: accept, control-tower already does this for itself."
+  - "S-019: the residency stray scan (~/Desktop, ~/Downloads) needs a grant the unattended runner does not hold; recommend it stays a --stray-scan flag run by hand from a chat's own session grant, rather than widening the runner app's standing macOS grant. No strong recommendation either way, this is Yassir's call on how wide a standing grant he wants."
+  - "S-020: move the local mirror fallback from ~/PersonalAI-mirror to ~/Documents/PersonalAI-mirror so it sits inside the runner's existing grant and needs no new permission. Recommend: accept."
+  - "S-020: if an external drive is named for D-003, it needs its own reachability check, a widened grant or a session-only run; no recommendation, this is D-003's own outstanding fact."
+  - "S-020: fold a fourth amber condition, mirror staleness past config.yml's warn_after_days, into S-018's light floor before both are accepted. Recommend: accept, S-018 is still unbuilt."
+  - "S-017: brief.sh generates pointers and a fresh digest only; the role paragraphs (autonomy, never-write lists, git-lock handling) stay in the stable per-chat prompt files, shortened later to point at brief.sh. Recommend: accept."
+  - "S-017 / bin/README.md: the hub's own docs still cite the stale pre-D-009 path _tower/bin/<tool>; correct to AI Control Tower/dev/bin/ (prod/bin/ after first promote). Recommend: accept, a docs cleanup edit."
+  - "S-021: the front-door indirection (dev/bin/run-operations.sh becomes a 5-line, never-promoted stub; today's logic renames to run-operations.impl.sh) is the only way found to repoint the runner to prod/ without rebuilding the app. Recommend: accept."
+  - "S-021: v0.2.0-plan.md's own C3 evidence line, \"the plist's path,\" does not match how S-015 was actually built (the plist names the .app, not a script); recommend correcting that line's wording to match the front-door evidence in S-021's own criteria table."
+  - "S-021: set registry/control-tower.yml's health.smoke to dev/bin/smoke.sh once that file exists, the one registry write this story needs. Recommend: accept."
+  - "S-021: whether X-001 fully closes once heartbeat.sh and run-operations.impl.sh run from prod/, or narrows to cover only the front door's 5 lines that remain under dev/. Recommend: close it; the remaining lines carry no logic to review release over release, but this is a documentation-weight call, not a safety one, so it is named rather than assumed."
+  - "S-022: the drafted charter line for Platform Architecture (purpose from the registry's own one_liner, non-goal that it does not ship code and does not become a second architecture project if iExecAdmin ever turns up) needs Yassir's one-word confirm or correction, per D-007."
+  - "S-022: a docs-only project's registry health.tests/health.smoke read \"n/a, docs-only\" rather than an empty string, so S-019's audit can tell an intentional gap from an undeclared one. Recommend: accept, and apply the same convention retroactively wherever another docs-only project is later adopted."
+  - "S-023: config.yml gains git.control_tower_repo: personalai-control-tower, alongside the existing git.tower_repo. Recommend: accept."
+  - "S-013: build _shared/pyai/llm.py (Keychain-held API key, a monthly budget counter, a hard refusal past budget) as this story's own first, real exercise of D-010's second-use rule, rather than a local, unshared call inside dev/ui. Recommend: accept."
+  - "S-013: the LLM budget check reads the calling project's own registry autonomy.budget_usd_month, fresh before every call. Recommend: accept."
+next: >
+  All eight stories in this order now have proposed designs, acceptance criteria and
+  evidence named in advance, and every needed decision listed above at decision depth.
+  Nothing here builds: the M0 hold stands until S-004 passes, unchanged by this order.
+  The control room's own next steps: fold the "needs" list above into numbered decisions
+  (D-018's "who writes what" reserves decisions/, registry and config.yml to it, not this
+  chat), correct v0.2.0-plan.md's S-021 evidence line, and decide whether to also update
+  bin/README.md and OPEN_SESSION_PROMPT.md's stale _tower/bin/ references now, while the
+  cost of the re-paste is still low, or carry them as a named cleanup for later.
+notes:
+  - "Session opened cold: this chat's own claims file (control-tower.evolutions.yml)
+    still named the previous Evolutions session (session_01XGyggeceZjgr8Lrh7Unamr),
+    with claims: [] and no report pending, confirming O-0002's own close-out had
+    already landed everything the 14:45 handover records. Requested delete
+    permission for both connected folders and proved it with a create-then-remove
+    probe in the clone before running any git, per the prompt."
+  - "git fetch + fast-forward merge of origin/main into evolutions, c2348f8..9a854bf,
+    10 commits, before writing anything: the branch was behind main (S-016's
+    acceptance, S-024/S-025, the runner install) per O-0004's own constraint."
+  - "No stray locks, no probe file and no uncommitted edits were found in the clone
+    at open: the control room's 14:45 handover already cleared what the 14:33
+    evolutions close-out had left in flight (P1 to P3, D1 to D3)."
+  - "One commit per design, eight commits total, ec3eee3 through b7c584f, all on
+    branch evolutions in AI Control Tower/.chats/evolutions. Nothing pushed, no
+    merge, no shared file written, no prod/ or dev/ touched, per D-018."

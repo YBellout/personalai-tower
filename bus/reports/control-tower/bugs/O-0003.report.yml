@@ -1,0 +1,102 @@
+order: O-0003
+project: control-tower
+chat: bugs
+session: https://claude.ai/code/session_014PdPNoBvheuENin4xcrxjj
+reported: 2026-09-21T21:20
+
+stories:
+
+  - story: S-025
+    status: "ready to merge"
+    branch: bugs
+    commit: 13ad7d1
+    design_ref: "AI Control Tower/docs/stories/S-025-keep-last-error-design.md"
+    criteria:
+      - id: C1
+        criterion: "An error, then a clean wake, leaves the error in last-error"
+        status: closed
+        evidence: >
+          Scratch harness mimicking the real layout (root/_tower + root/AI Control
+          Tower/dev/bin/run-operations.sh): an error run wrote the entry with its
+          timestamp; a clean run immediately after left last-error byte-identical,
+          because the unconditional truncation at the top of the script was removed.
+      - id: C2
+        criterion: "A second error replaces the first, never appends without bound"
+        status: closed
+        evidence: >
+          Same harness: after a first error run and a second, different error run,
+          last-error held only the second error's block. Line count stayed at 2
+          (one timestamp line, one message line) rather than growing, because the
+          write inside run_job() changed from append (>>) to overwrite (>).
+    requests: []
+
+  - story: S-024
+    status: "ready to merge"
+    branch: bugs
+    commit: e8bf5cb
+    design_ref: "AI Control Tower/docs/stories/S-024-late-lock-handover-design.md"
+    criteria:
+      - id: C1
+        criterion: >
+          With a push already recorded, a lock found at the second check leaves
+          "pushed: <hash>" in the handover and adds "report commit skipped: git busy"
+        status: closed
+        evidence: >
+          Scratch harness: fresh git repo plus a local bare remote so the push
+          genuinely succeeds, with a post-commit hook that plants a fresh
+          .git/index.lock immediately after the real work commit (before the
+          second lock check, never before the first). heartbeat.sh --force exited
+          8; the handover kept "pushed: <hash> to origin" from the first
+          write_handover call and gained a second, appended line "report commit
+          skipped: git busy"; the lock (young, no git process) was left untouched
+          per the existing rule.
+      - id: C2
+        criterion: "Every other path unchanged"
+        status: closed
+        evidence: >
+          Reran S-014's C1 to C4 in a fresh scratch harness. C1: a lock held by a
+          real process literally named "git" (pgrep -x git needs the executable's
+          own name, not just argv[0]) left alone, exit 8, handover reads "SKIPPED:
+          git busy" / "nothing removed, .git/index.lock present while a git process
+          is running". C2: a 10-minute-old lock with no git process removed, commit
+          proceeds, handover names the lock and its age. C3: a lock created moments
+          earlier with no git process left alone, exit 8, same "SKIPPED: git busy"
+          shape. C4: no lock, handover keeps the pre-S-014, pre-S-024 shape
+          (RAN, committed <hash> / push result). All four match the wording in the
+          O-0001 report's S-014 evidence.
+      - id: C3
+        criterion: >
+          Widened. A push answered "could not read Password" produces the
+          credential-rejected line
+        status: closed
+        evidence: >
+          Tested the exact new regex component against
+          "fatal: could not read Password for 'https://YBellout@github.com':
+          terminal prompts disabled", captured verbatim from today's real push
+          failure on the Mac (bus/bus/handover/2026-09-21-170849-heartbeat.md).
+          It matches. Regression: "could not read Username" still matches, and a
+          genuine "Could not resolve host" failure still classifies as network,
+          never as credential.
+      - id: C4
+        criterion: "Widened. Two runs in the same second leave two handover files"
+        status: closed
+        evidence: >
+          Two heartbeat.sh --force processes started together (backgrounded,
+          waited on together) against the same harness _tower, same TODAY-NOW
+          window (2026-09-21-211613): both wrote distinct handover files, one per
+          PID (...-18-heartbeat.md, ...-19-heartbeat.md), neither overwrote the
+          other. The two runs did hit real git-level contention on the shared
+          working tree (one COMMIT FAILED, the other PUSH SKIPPED, no remote in
+          the harness) but that contention is real concurrent-git behaviour,
+          unrelated to and outside the scope of the filename fix under test.
+    requests: []
+
+notes: >
+  Order constraints followed: delete permission for ~/Documents/PersonalAI requested
+  and proven with a create/remove probe in the bugs clone before any git command; git
+  fetch origin then a fast-forward merge of origin/main into bugs (bca67d3..9a854bf,
+  clean, no conflicts) before starting either story; both design files read fresh from
+  origin/main and confirmed "State: accepted by Yassir, 2026-09-21" before work began;
+  claims/control-tower.bugs.yml carried both stories' paths for the duration and is
+  cleared in the same commit as this report's handover. Nothing pushed, nothing merged
+  into main, nothing run on the Mac. No shared file touched.
