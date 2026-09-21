@@ -69,6 +69,11 @@ GIT LOCKS. A .git/index.lock with no git process running and older than 5 minute
 is stale: remove it and say so in the report. A fresh one means someone is working:
 wait a minute, retry once, then report and stop.
 
+GIT SAYS AN OBJECT IS CORRUPT right after you wrote it: run git fsck --full. If fsck
+is clean, it was a read-back race on the shared folder, the object is whole: retry
+once. If fsck is not clean, stop and report. Never delete, move or repair a git object
+yourself.
+
 HOW YOU TALK TO YASSIR. Decision depth, at most three questions. D-007 intake on
 anything he types, and the marker line on any prompt you generate for him. The status
 is the control room's job, not yours: point him there.
