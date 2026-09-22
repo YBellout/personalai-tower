@@ -1,45 +1,45 @@
 {
-  "generated_at": "2026-09-21T18:10:00-04:00",
-  "generated_by": "control room, session 011gf314me9VbMwtXMr9vTjp",
-  "light": "amber",
-  "headline": "All eight M1 designs are complete, your answers recorded as D-021. M0 still waits on GitHub alone.",
+  "generated_at": "2026-09-22T01:06:00-04:00",
+  "generated_by": "control room, session c7857b12",
+  "light": "green",
+  "headline": "First push landed. Three-day test is live. Day 1 of 3 in progress.",
   "your_actions": [
     {
       "n": 1,
-      "do": "GitHub: empty private repo personalai-tower, a token for it only, then connect-github. The last thing blocking the three-day test",
-      "who": "only you, the token is a secret",
-      "where": "github.com/new, then AI Control Tower/launchers/connect-github.command",
-      "button": "link",
-      "minutes": 6
-    },
-    {
-      "n": 2,
-      "do": "Check Privacy and Security: the runner under Files and Folders, bash not under Full Disk Access, and tell me",
+      "do": "Check Privacy and Security: runner under Files and Folders, bash NOT under Full Disk Access",
       "who": "only you",
       "where": "System Settings",
       "button": "none",
       "minutes": 1
     },
     {
+      "n": 2,
+      "do": "Dead-man check S-015 C3: simulate the runner stalling and confirm the dead-man fires, then tell me",
+      "who": "you and me",
+      "where": "Terminal",
+      "button": "none",
+      "minutes": 5
+    },
+    {
       "n": 3,
-      "do": "Not urgent: accept the eight M1 designs, whenever you want to read them. Nothing builds before the three-day test",
-      "who": "only you, acceptance is yours",
+      "do": "Not urgent: accept the eight M1 designs whenever you want to read them",
+      "who": "only you",
       "where": "AI Control Tower/docs/stories/",
       "button": "link",
       "minutes": 20
     }
   ],
   "claude_next": [
-    "Watch the runner's wakes on the merged heartbeat code",
-    "After your push: confirm origin/main and privacy, then start S-004",
-    "Test the dead-man check, S-015 C3, when you are ready"
+    "Watch the heartbeat's next push (00:38 or 01:08) to confirm the token holds across wakes",
+    "Close S-002 in the hub once confirmed",
+    "Start S-004 day counter \u2014 day 1 begins today, 2026-09-22"
   ],
   "milestone": {
     "release": "v0.1.0",
     "name": "M0",
     "stories_done": 9,
     "stories_total": 13,
-    "exit_test": "3 consecutive days with the Mac on, each with a commit and a push",
+    "exit_test": "3 consecutive days with the Mac on, each with a commit and a push \u2014 day 1 starts today",
     "exit_days_passed": 0,
     "exit_days_needed": 3
   },
@@ -53,20 +53,20 @@
     {
       "id": "S-002",
       "title": "git and private GitHub remote",
-      "state": "waiting_user",
-      "note": "push fails, no GitHub credential yet"
+      "state": "done",
+      "note": "first push landed 2026-09-22 00:08, token embedded in remote URL"
     },
     {
       "id": "S-003",
       "title": "Heartbeat",
       "state": "in_progress",
-      "note": "unattended every 30 minutes, push pending"
+      "note": "pushing cleanly every 30 min, token embedded, no credential prompt"
     },
     {
       "id": "S-004",
       "title": "Three days unattended",
-      "state": "blocked",
-      "note": "blocked only by the first push"
+      "state": "in_progress",
+      "note": "day 1 of 3 started 2026-09-22"
     },
     {
       "id": "S-024/S-025",
@@ -114,18 +114,18 @@
     }
   ],
   "watch": [
-    "No offsite copy of anything exists: no push has ever succeeded",
-    "The Virtual Closet crawler added about 32,600 files in 2.5 hours under the root. Not the Tower's, but it sizes the D-003 mirror",
-    "Until GitHub is connected the heartbeat commits twice every 30 minutes"
+    "Day 1 of 3 in progress: need 2 more consecutive days with a push each",
+    "Confirm the next heartbeat wake (~01:08) also pushes, to be sure the token survives wakes",
+    "Privacy & Security check still pending"
   ],
   "heartbeat": {
     "installed": true,
     "runner": true,
-    "last_run": "2026-09-21 17:08:51",
-    "last_result": "PUSH FAILED: could not read Password, no GitHub credential yet",
-    "last_success_day": null,
-    "alive": "2026-09-21T21:08:49Z",
-    "automatic_runs_since_install": 5
+    "last_run": "2026-09-22 00:08:50",
+    "last_result": "pushed: 573faca to origin",
+    "last_success_day": "2026-09-22",
+    "alive": "2026-09-22T04:38:50Z",
+    "automatic_runs_since_install": 9
   },
   "sources": [
     "bus/handover, newest by mtime",
